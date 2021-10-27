@@ -30,8 +30,7 @@ public class Trivial {
         final String RESPUESTA8 = "S";
         final String RESPUESTA9 = "S";
         final String RESPUESTA10 = "MG"; // me diga las dos iniciales a la vez
-        boolean repetida1 = false, repetida2 = false,repetida3 = false, repetida4 = false, repetida5 = false, repetida6 = false, repetida7 = false, repetida8 = false, repetida9 = false, repetida10 = false;
-      
+        boolean repetida1 = false, repetida2 = false, repetida3 = false, repetida4 = false, repetida5 = false, repetida6 = false, repetida7 = false, repetida8 = false, repetida9 = false, repetida10 = false;
 
         String respuestausuario;
         String volverAJugar;
@@ -49,7 +48,7 @@ public class Trivial {
             Scanner sc = new Scanner(System.in);
             numPreguntas = 0;
             acertadas = 0;
-            repetida1 = repetida2 = repetida3 = repetida4 = repetida5 = repetida6 = repetida7 = repetida8 = repetida9 = repetida10  = false;
+            repetida1 = repetida2 = repetida3 = repetida4 = repetida5 = repetida6 = repetida7 = repetida8 = repetida9 = repetida10 = false;
             while (numPreguntas < 3 || numPreguntas > 10) {
                 System.out.println("¿Cuantas preguntas quieres hacer? De 3 a 10 preguntas.");
                 numeroPreguntasText = sc.nextLine();
@@ -375,7 +374,7 @@ public class Trivial {
                         }
 
                 }
-                
+
             }
 
             porcentaje = (acertadas * 100) / numPreguntas;
@@ -397,8 +396,7 @@ public class Trivial {
                 System.out.println("Gracias por jugar.");
                 break;
             }
-                
-            
+
         }
     }
 

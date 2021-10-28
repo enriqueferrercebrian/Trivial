@@ -7,7 +7,7 @@ import java.util.Scanner;
  */
 public class Trivial {
 
-public static void main(String[] args) {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         final String NOMBRE_TRIVIAL = "Los Simpsons";
         final String PREGUNTA1 = "\n¿La Familia Simpson se componia de 6 Miembos?";
@@ -33,21 +33,22 @@ public static void main(String[] args) {
         boolean repetida1 = false, repetida2 = false, repetida3 = false, repetida4 = false, repetida5 = false, repetida6 = false, repetida7 = false, repetida8 = false, repetida9 = false, repetida10 = false;
 
         String respuestaUsuario;
-       final String ERRORPARSEINTEXCEPTION = "Error inesperado.";
+        final String ERRORPARSEINTEXCEPTION = "Error inesperado.";
         String volverAJugar;
         boolean jugar = true;
         int i = 0;
         int numRamdon;
         int numPreguntas;
-       final int RANGOMAXIMO = 10;   // ponemos el maximo a 9 para cuando todo funcione meternos con la pregunta 10 que es mas complicada.
-       final int RANGOMINIMO = 1;
+        final int RANGOMAXIMO = 10;   // ponemos el maximo a 9 para cuando todo funcione meternos con la pregunta 10 que es mas complicada.
+        final int RANGOMINIMO = 1;
         String numeroPreguntasText;
+        int longitudrespuesta = 0;
         double aciertos;
         double porcentaje;
         System.out.println("Bienvenidos al trivial de " + NOMBRE_TRIVIAL + ".");
 
         while (jugar != false) {
-
+            i = 0;
             numPreguntas = 0;
             aciertos = 0;
             repetida1 = repetida2 = repetida3 = repetida4 = repetida5 = repetida6 = repetida7 = repetida8 = repetida9 = repetida10 = false;
@@ -55,7 +56,6 @@ public static void main(String[] args) {
             while (numPreguntas < 3 || numPreguntas > 10) {
                 System.out.println("¿Cuantas preguntas quieres hacer? De 3 a 10 preguntas.");
                 numeroPreguntasText = sc.nextLine();
-                numPreguntas = Integer.parseInt(numeroPreguntasText);
 
                 try {
                     numPreguntas = Integer.parseInt(numeroPreguntasText);
@@ -79,6 +79,22 @@ public static void main(String[] args) {
                     i++;
                     System.out.println(PREGUNTA1);
                     respuestaUsuario = sc.nextLine();
+
+                    while (!respuestaUsuario.equalsIgnoreCase("NO") && !respuestaUsuario.equalsIgnoreCase("N")
+                            && !respuestaUsuario.equalsIgnoreCase("SI") && !respuestaUsuario.equalsIgnoreCase("S")) {
+                        System.out.println("Por favor, Responda Si o No");
+                        respuestaUsuario = sc.nextLine();
+                    }
+
+                    longitudrespuesta = respuestaUsuario.length();
+                    if (longitudrespuesta == 2) {
+                        if (respuestaUsuario.equalsIgnoreCase("No")) {
+                            respuestaUsuario = "N";
+                        } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
+                            respuestaUsuario = "S";
+                        }
+                    }
+
                     if (respuestaUsuario != null && respuestaUsuario.equalsIgnoreCase(RESPUESTA1)) {
                         aciertos++;
                         if (aciertos > 1) {
@@ -95,6 +111,21 @@ public static void main(String[] args) {
                     i++;
                     System.out.println(PREGUNTA2);
                     respuestaUsuario = sc.nextLine();
+
+                    while (!respuestaUsuario.equalsIgnoreCase("NO") && !respuestaUsuario.equalsIgnoreCase("N")
+                            && !respuestaUsuario.equalsIgnoreCase("SI") && !respuestaUsuario.equalsIgnoreCase("S")) {
+                        System.out.println("Por favor, Responda Si o No");
+                        respuestaUsuario = sc.nextLine();
+                    }
+                    longitudrespuesta = respuestaUsuario.length();
+                    if (longitudrespuesta == 2) {
+                        if (respuestaUsuario.equalsIgnoreCase("No")) {
+                            respuestaUsuario = "N";
+                        } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
+                            respuestaUsuario = "S";
+                        }
+                    }
+
                     if (respuestaUsuario != null && respuestaUsuario.equalsIgnoreCase(RESPUESTA2)) {
                         aciertos++;
                         if (aciertos > 1) {
@@ -104,13 +135,27 @@ public static void main(String[] args) {
 
                         }
                     } else {
-                        System.out.println("\nRealmente fue ella quien disparó, asique si.");
+                        System.out.println("\nRealmente fue ella quien disparó, asi que si.");
                     }
                 } else if (numRamdon == 3 && !repetida3) {
                     repetida3 = true;
                     i++;
                     System.out.println(PREGUNTA3);
                     respuestaUsuario = sc.nextLine();
+                    while (!respuestaUsuario.equalsIgnoreCase("NO") && !respuestaUsuario.equalsIgnoreCase("N")
+                            && !respuestaUsuario.equalsIgnoreCase("SI") && !respuestaUsuario.equalsIgnoreCase("S")) {
+                        System.out.println("Por favor, Responda Si o No");
+                        respuestaUsuario = sc.nextLine();
+                    }
+                    longitudrespuesta = respuestaUsuario.length();
+                    if (longitudrespuesta == 2) {
+                        if (respuestaUsuario.equalsIgnoreCase("No")) {
+                            respuestaUsuario = "N";
+                        } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
+                            respuestaUsuario = "S";
+                        }
+                    }
+
                     if (respuestaUsuario != null && respuestaUsuario.equalsIgnoreCase(RESPUESTA3)) {
                         aciertos++;
                         if (aciertos > 1) {
@@ -128,6 +173,21 @@ public static void main(String[] args) {
                     i++;
                     System.out.println(PREGUNTA4);
                     respuestaUsuario = sc.nextLine();
+                    
+                    while (!respuestaUsuario.equalsIgnoreCase("NO") && !respuestaUsuario.equalsIgnoreCase("N")
+                            && !respuestaUsuario.equalsIgnoreCase("SI") && !respuestaUsuario.equalsIgnoreCase("S")) {
+                        System.out.println("Por favor, Responda Si o No");
+                        respuestaUsuario = sc.nextLine();
+                    }
+                    longitudrespuesta = respuestaUsuario.length();
+                    if (longitudrespuesta == 2) {
+                        if (respuestaUsuario.equalsIgnoreCase("No")) {
+                            respuestaUsuario = "N";
+                        } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
+                            respuestaUsuario = "S";
+                        }
+                    }
+
                     if (respuestaUsuario != null && respuestaUsuario.equalsIgnoreCase(RESPUESTA4)) {
                         aciertos++;
                         if (aciertos > 1) {
@@ -144,6 +204,20 @@ public static void main(String[] args) {
                     i++;
                     System.out.println(PREGUNTA5);
                     respuestaUsuario = sc.nextLine();
+                    while (!respuestaUsuario.equalsIgnoreCase("NO") && !respuestaUsuario.equalsIgnoreCase("N")
+                            && !respuestaUsuario.equalsIgnoreCase("SI") && !respuestaUsuario.equalsIgnoreCase("S")) {
+                        System.out.println("Por favor, Responda Si o No");
+                        respuestaUsuario = sc.nextLine();
+                    }
+                    longitudrespuesta = respuestaUsuario.length();
+                    if (longitudrespuesta == 2) {
+                        if (respuestaUsuario.equalsIgnoreCase("No")) {
+                            respuestaUsuario = "N";
+                        } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
+                            respuestaUsuario = "S";
+                        }
+                    }
+
                     if (respuestaUsuario != null && respuestaUsuario.equalsIgnoreCase(RESPUESTA5)) {
                         aciertos++;
                         if (aciertos > 1) {
@@ -160,6 +234,20 @@ public static void main(String[] args) {
                     i++;
                     System.out.println(PREGUNTA6);
                     respuestaUsuario = sc.nextLine();
+                    while (!respuestaUsuario.equalsIgnoreCase("NO") && !respuestaUsuario.equalsIgnoreCase("N")
+                            && !respuestaUsuario.equalsIgnoreCase("SI") && !respuestaUsuario.equalsIgnoreCase("S")) {
+                        System.out.println("Por favor, Responda Si o No");
+                        respuestaUsuario = sc.nextLine();
+                    }
+                    longitudrespuesta = respuestaUsuario.length();
+                    if (longitudrespuesta == 2) {
+                        if (respuestaUsuario.equalsIgnoreCase("No")) {
+                            respuestaUsuario = "N";
+                        } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
+                            respuestaUsuario = "S";
+                        }
+                    }
+
                     if (respuestaUsuario != null && respuestaUsuario.equalsIgnoreCase(RESPUESTA6)) {
                         aciertos++;
                         if (aciertos > 1) {
@@ -177,6 +265,20 @@ public static void main(String[] args) {
                     i++;
                     System.out.println(PREGUNTA7);
                     respuestaUsuario = sc.nextLine();
+                    while (!respuestaUsuario.equalsIgnoreCase("NO") && !respuestaUsuario.equalsIgnoreCase("N")
+                            && !respuestaUsuario.equalsIgnoreCase("SI") && !respuestaUsuario.equalsIgnoreCase("S")) {
+                        System.out.println("Por favor, Responda Si o No");
+                        respuestaUsuario = sc.nextLine();
+                    }
+                    longitudrespuesta = respuestaUsuario.length();
+                    if (longitudrespuesta == 2) {
+                        if (respuestaUsuario.equalsIgnoreCase("No")) {
+                            respuestaUsuario = "N";
+                        } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
+                            respuestaUsuario = "S";
+                        }
+                    }
+
                     if (respuestaUsuario != null && respuestaUsuario.equalsIgnoreCase(RESPUESTA7)) {
                         aciertos++;
                         if (aciertos > 1) {
@@ -193,6 +295,20 @@ public static void main(String[] args) {
                     i++;
                     System.out.println(PREGUNTA8);
                     respuestaUsuario = sc.nextLine();
+                    while (!respuestaUsuario.equalsIgnoreCase("NO") && !respuestaUsuario.equalsIgnoreCase("N")
+                            && !respuestaUsuario.equalsIgnoreCase("SI") && !respuestaUsuario.equalsIgnoreCase("S")) {
+                        System.out.println("Por favor, Responda Si o No");
+                        respuestaUsuario = sc.nextLine();
+                    }
+                    longitudrespuesta = respuestaUsuario.length();
+                    if (longitudrespuesta == 2) {
+                        if (respuestaUsuario.equalsIgnoreCase("No")) {
+                            respuestaUsuario = "N";
+                        } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
+                            respuestaUsuario = "S";
+                        }
+                    }
+
                     if (respuestaUsuario != null && respuestaUsuario.equalsIgnoreCase(RESPUESTA8)) {
                         aciertos++;
                         if (aciertos > 1) {
@@ -210,6 +326,20 @@ public static void main(String[] args) {
                     i++;
                     System.out.println(PREGUNTA9);
                     respuestaUsuario = sc.nextLine();
+                    while (!respuestaUsuario.equalsIgnoreCase("NO") && !respuestaUsuario.equalsIgnoreCase("N")
+                            && !respuestaUsuario.equalsIgnoreCase("SI") && !respuestaUsuario.equalsIgnoreCase("S")) {
+                        System.out.println("Por favor, Responda Si o No");
+                        respuestaUsuario = sc.nextLine();
+                    }
+                    longitudrespuesta = respuestaUsuario.length();
+                    if (longitudrespuesta == 2) {
+                        if (respuestaUsuario.equalsIgnoreCase("No")) {
+                            respuestaUsuario = "N";
+                        } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
+                            respuestaUsuario = "S";
+                        }
+                    }
+
                     if (respuestaUsuario != null && respuestaUsuario.equalsIgnoreCase(RESPUESTA9)) {
                         aciertos++;
                         if (aciertos > 1) {
@@ -238,7 +368,7 @@ public static void main(String[] args) {
                     } else {
 
                         if (RESPUESTA10.length() == respuestaUsuario.length()) {
-
+                            respuestaUsuario = respuestaUsuario.toUpperCase();
                             if (RESPUESTA10.charAt(0) == respuestaUsuario.charAt(0)
                                     || RESPUESTA10.charAt(1) == respuestaUsuario.charAt(1)) {
                                 repetida10 = true;
@@ -250,12 +380,14 @@ public static void main(String[] args) {
                                     System.out.println("\nLlevas un total de " + aciertos + " Punto, Animo!. \n----------------------------------------------------");
 
                                 }
+                            } else {
+                                System.out.println("\nEl pelo y la oreja de homer forman las iniciales del creador MG.");
+
                             }
                         } else {
                             System.out.println("\nlas palabras no tienen la misma longitud, creo que no te la sabes...");
                         }
                     }
-                    System.out.println("\nEl pelo y la oreja de homer forman las iniciales del creador MG.");
                 }
 
             }

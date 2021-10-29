@@ -35,8 +35,9 @@ public class Trivial {
         String usuario2 = "", segundoPuesto = "";
         String usuario3 = "", tercerPuesto = "";
         String usuario4 = "", cuartoPuesto = "";
-        int numerojugadores = 0;
-        int n = 0;
+        int numeroJugadores = 0;
+        int contadorJugadores = 0;
+        String mismosJugadores;
         String ranking = "";
         String respuestaUsuario;
         final String ERRORPARSEINTEXCEPTION = "Error inesperado.";
@@ -52,7 +53,7 @@ public class Trivial {
         final int RANGOMAXIMO = 10;   // ponemos el maximo a 9 para cuando todo funcione meternos con la pregunta 10 que es mas complicada.
         final int RANGOMINIMO = 1;
         String numeroPreguntasText;
-        int longitudrespuesta = 0;
+        int longitudRespuesta = 0;
         double aciertos;
         double porcentaje;
         System.out.println("Bienvenidos al trivial de " + NOMBRE_TRIVIAL + ".");
@@ -63,47 +64,48 @@ public class Trivial {
             aciertos = 0;
             repetida1 = repetida2 = repetida3 = repetida4 = repetida5 = repetida6 = repetida7 = repetida8 = repetida9 = repetida10 = false;
 
-            while (numerojugadores < 1 || numerojugadores > 4) {
+            while (numeroJugadores < 1 || numeroJugadores > 4) {
 
                 System.out.println("Cuantos jugadores vais a jugar? maximo 4 minimo 1");
-                numerojugadores = Integer.parseInt(sc.nextLine());
-                if (numerojugadores < 1 || numerojugadores > 4) {
+                numeroJugadores = Integer.parseInt(sc.nextLine());
+                if (numeroJugadores < 1 || numeroJugadores > 4) {
                     System.out.println("Porfavor, solo de 1 a 4 jugadores.");
 
                 }
-                while (n < numerojugadores) {
-                    if ((n + 1) == 1) {
-                        System.out.println("Cual es tu nombre jugador " + (n + 1));
-                        n++;
+            }
+                while (contadorJugadores < numeroJugadores) {
+                    if ((contadorJugadores + 1) == 1) {
+                        System.out.println("Cual es tu nombre jugador " + (contadorJugadores + 1));
+                        contadorJugadores++;
                         usuario1 = sc.nextLine();
 
-                    } else if ((n + 1) == 2) {
+                    } else if ((contadorJugadores + 1) == 2) {
                         i = 0;
                         //numPreguntas = 0;
                         aciertos = 0;
                         repetida1 = repetida2 = repetida3 = repetida4 = repetida5 = repetida6 = repetida7 = repetida8 = repetida9 = repetida10 = false;
-                        System.out.println("Cual es tu nombre jugador " + (n + 1));
-                        n++;
+                        System.out.println("Cual es tu nombre jugador " + (contadorJugadores + 1));
+                        contadorJugadores++;
                         usuario2 = sc.nextLine();
 
-                    } else if ((n + 1) == 3) {
-                        System.out.println("Cual es tu nombre jugador " + (n + 1));
+                    } else if ((contadorJugadores + 1) == 3) {
+                        System.out.println("Cual es tu nombre jugador " + (contadorJugadores + 1));
                         i = 0;
                         //numPreguntas = 0;
                         aciertos = 0;
                         repetida1 = repetida2 = repetida3 = repetida4 = repetida5 = repetida6 = repetida7 = repetida8 = repetida9 = repetida10 = false;
-                        n++;
+                        contadorJugadores++;
                         usuario3 = sc.nextLine();
 
                         System.out.println("Hola " + usuario3 + " tus aciertos son " + aciertos);
 
-                    } else if ((n + 1) == 4) {
+                    } else if ((contadorJugadores + 1) == 4) {
                         i = 0;
                         //numPreguntas = 0;
                         aciertos = 0;
                         repetida1 = repetida2 = repetida3 = repetida4 = repetida5 = repetida6 = repetida7 = repetida8 = repetida9 = repetida10 = false;
-                        System.out.println("Cual es tu nombre jugador " + (n + 1));
-                        n++;
+                        System.out.println("Cual es tu nombre jugador " + (contadorJugadores + 1));
+                        contadorJugadores++;
                         usuario4 = sc.nextLine();
 
                     }
@@ -142,8 +144,8 @@ public class Trivial {
                                 respuestaUsuario = sc.nextLine();
                             }
 
-                            longitudrespuesta = respuestaUsuario.length();
-                            if (longitudrespuesta == 2) {
+                            longitudRespuesta = respuestaUsuario.length();
+                            if (longitudRespuesta == 2) {
                                 if (respuestaUsuario.equalsIgnoreCase("No")) {
                                     respuestaUsuario = "N";
                                 } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
@@ -173,8 +175,8 @@ public class Trivial {
                                 System.out.println("Por favor, Responda Si o No");
                                 respuestaUsuario = sc.nextLine();
                             }
-                            longitudrespuesta = respuestaUsuario.length();
-                            if (longitudrespuesta == 2) {
+                            longitudRespuesta = respuestaUsuario.length();
+                            if (longitudRespuesta == 2) {
                                 if (respuestaUsuario.equalsIgnoreCase("No")) {
                                     respuestaUsuario = "N";
                                 } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
@@ -203,8 +205,8 @@ public class Trivial {
                                 System.out.println("Por favor, Responda Si o No");
                                 respuestaUsuario = sc.nextLine();
                             }
-                            longitudrespuesta = respuestaUsuario.length();
-                            if (longitudrespuesta == 2) {
+                            longitudRespuesta = respuestaUsuario.length();
+                            if (longitudRespuesta == 2) {
                                 if (respuestaUsuario.equalsIgnoreCase("No")) {
                                     respuestaUsuario = "N";
                                 } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
@@ -235,8 +237,8 @@ public class Trivial {
                                 System.out.println("Por favor, Responda Si o No");
                                 respuestaUsuario = sc.nextLine();
                             }
-                            longitudrespuesta = respuestaUsuario.length();
-                            if (longitudrespuesta == 2) {
+                            longitudRespuesta = respuestaUsuario.length();
+                            if (longitudRespuesta == 2) {
                                 if (respuestaUsuario.equalsIgnoreCase("No")) {
                                     respuestaUsuario = "N";
                                 } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
@@ -265,8 +267,8 @@ public class Trivial {
                                 System.out.println("Por favor, Responda Si o No");
                                 respuestaUsuario = sc.nextLine();
                             }
-                            longitudrespuesta = respuestaUsuario.length();
-                            if (longitudrespuesta == 2) {
+                            longitudRespuesta = respuestaUsuario.length();
+                            if (longitudRespuesta == 2) {
                                 if (respuestaUsuario.equalsIgnoreCase("No")) {
                                     respuestaUsuario = "N";
                                 } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
@@ -295,8 +297,8 @@ public class Trivial {
                                 System.out.println("Por favor, Responda Si o No");
                                 respuestaUsuario = sc.nextLine();
                             }
-                            longitudrespuesta = respuestaUsuario.length();
-                            if (longitudrespuesta == 2) {
+                            longitudRespuesta = respuestaUsuario.length();
+                            if (longitudRespuesta == 2) {
                                 if (respuestaUsuario.equalsIgnoreCase("No")) {
                                     respuestaUsuario = "N";
                                 } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
@@ -326,8 +328,8 @@ public class Trivial {
                                 System.out.println("Por favor, Responda Si o No");
                                 respuestaUsuario = sc.nextLine();
                             }
-                            longitudrespuesta = respuestaUsuario.length();
-                            if (longitudrespuesta == 2) {
+                            longitudRespuesta = respuestaUsuario.length();
+                            if (longitudRespuesta == 2) {
                                 if (respuestaUsuario.equalsIgnoreCase("No")) {
                                     respuestaUsuario = "N";
                                 } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
@@ -356,8 +358,8 @@ public class Trivial {
                                 System.out.println("Por favor, Responda Si o No");
                                 respuestaUsuario = sc.nextLine();
                             }
-                            longitudrespuesta = respuestaUsuario.length();
-                            if (longitudrespuesta == 2) {
+                            longitudRespuesta = respuestaUsuario.length();
+                            if (longitudRespuesta == 2) {
                                 if (respuestaUsuario.equalsIgnoreCase("No")) {
                                     respuestaUsuario = "N";
                                 } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
@@ -387,8 +389,8 @@ public class Trivial {
                                 System.out.println("Por favor, Responda Si o No");
                                 respuestaUsuario = sc.nextLine();
                             }
-                            longitudrespuesta = respuestaUsuario.length();
-                            if (longitudrespuesta == 2) {
+                            longitudRespuesta = respuestaUsuario.length();
+                            if (longitudRespuesta == 2) {
                                 if (respuestaUsuario.equalsIgnoreCase("No")) {
                                     respuestaUsuario = "N";
                                 } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
@@ -445,21 +447,19 @@ public class Trivial {
                                 }
                             }
                         }
-                        if (n == 1) {
+                        if (contadorJugadores == 1) {
                             aciertos1 = aciertos;
-                        } else if (n == 2) {
+                        } else if (contadorJugadores == 2) {
                             aciertos2 = aciertos;
-                        } else if (n == 3) {
+                        } else if (contadorJugadores == 3) {
                             aciertos3 = aciertos;
 
-                        } else if (n == 4) {
+                        } else if (contadorJugadores == 4) {
                             aciertos4 = aciertos;
 
                         }
 
-                       
-
-                        switch (n) {
+                        switch (contadorJugadores) {
                             case 1:
                                 ranking = primerPuesto;
                                 System.out.println(ranking);
@@ -516,9 +516,18 @@ public class Trivial {
                 } else if (volverAJugar.equalsIgnoreCase("SI") || volverAJugar.equalsIgnoreCase("S")) {
                     System.out.println("Allá vamos!");
                 }
+                if (numeroJugadores > 1) {
+                    System.out.println("¿Sereis los mismos jugadores?");
+                    mismosJugadores = sc.nextLine();
+                    if (mismosJugadores.equalsIgnoreCase("NO")) {
+                        numeroJugadores = 0;
+
+                    } 
+                    contadorJugadores = 0;
+                }
+
             }
 
         }
-
     }
-}
+

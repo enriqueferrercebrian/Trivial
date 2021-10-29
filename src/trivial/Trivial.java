@@ -31,10 +31,10 @@ public class Trivial {
         final String RESPUESTA9 = "S";
         final String RESPUESTA10 = "MG"; // me diga las dos iniciales a la vez
         boolean repetida1 = false, repetida2 = false, repetida3 = false, repetida4 = false, repetida5 = false, repetida6 = false, repetida7 = false, repetida8 = false, repetida9 = false, repetida10 = false;
-        String usuario1 = "", usuario1total = "";
-        String usuario2 = "", usuario2total = "";
-        String usuario3 = "", usuario3total = "";
-        String usuario4 = "", usuario4total = "";
+        String usuario1 = "", primerPuesto = "";
+        String usuario2 = "", segundoPuesto = "";
+        String usuario3 = "", tercerPuesto = "";
+        String usuario4 = "", cuartoPuesto = "";
         int numerojugadores = 0;
         int n = 0;
         String ranking = "";
@@ -107,7 +107,7 @@ public class Trivial {
                         usuario4 = sc.nextLine();
 
                     }
-                    ranking = ranking + usuario1total + usuario2total + usuario3total + usuario4total;
+                    ranking = ranking + primerPuesto + segundoPuesto + tercerPuesto + cuartoPuesto;
 
                     while (numPreguntas < 3 || numPreguntas > 10) {
                         System.out.println("¿Cuantas preguntas quieres hacer? De 3 a 10 preguntas.");
@@ -457,10 +457,34 @@ public class Trivial {
 
                         }
 
-                        usuario1total = usuario1 + " " + aciertos1 + " ,";
-                        usuario2total = usuario2 + " " + aciertos2 + " ,";
-                        usuario3total = usuario3 + " " + aciertos3 + " ,";
-                        usuario4total = usuario4 + " " + aciertos4 + " ,";
+                       
+
+                        switch (n) {
+                            case 1:
+                                ranking = primerPuesto;
+                                System.out.println(ranking);
+
+                                break;
+                            case 2:
+
+                                ranking = primerPuesto + segundoPuesto;
+                                System.out.println(ranking);
+
+                                break;
+                            case 3:
+                                ranking = primerPuesto + segundoPuesto + tercerPuesto;
+                                System.out.println(ranking);
+
+                                break;
+                            case 4:
+                                ranking = primerPuesto + segundoPuesto + tercerPuesto;
+                                System.out.println(ranking);
+
+                                break;
+                            default:
+                                throw new AssertionError();
+                        }
+
                     }
                     porcentaje = (aciertos * 100) / numPreguntas;
                     if (porcentaje <= 33) {
@@ -472,8 +496,9 @@ public class Trivial {
                     } else if (porcentaje <= 100) {
                         System.out.print("\n----------------------------------------------------\n¿Eres Matt Groening? PER-FEC-TO!\n----------------------------------------------------\n");
                     }
+
                     System.out.println(String.format("Has acertado el  %.02f", porcentaje) + "% de las preguntas.");
-                    ranking = usuario1total + usuario2total + usuario3total + usuario4total;
+                    ranking = primerPuesto + segundoPuesto + tercerPuesto + cuartoPuesto;
                     System.out.println(ranking);
 
                 }

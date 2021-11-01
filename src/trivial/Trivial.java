@@ -47,487 +47,498 @@ public class Trivial {
         double aciertos3 = 0;
         double aciertos4 = 0;
         boolean jugar = true;
-        int i = 0;
+        int contadorPreguntas = 0;
         int numRamdon;
         int numPreguntas;
-        final int RANGOMAXIMO = 10;   // ponemos el maximo a 9 para cuando todo funcione meternos con la pregunta 10 que es mas complicada.
-        final int RANGOMINIMO = 1;
+        final int RANGO_MAXIMO = 10;   // ponemos el maximo a 9 para cuando todo funcione meternos con la pregunta 10 que es mas complicada.
+        final int RANGO_MINIMO = 1;
         String numeroPreguntasText;
         int longitudRespuesta = 0;
         double aciertos;
-        double porcentaje;
+        double porcentajeDeAciertos;
         System.out.println("Bienvenidos al trivial de " + NOMBRE_TRIVIAL + ".");
 
         while (jugar != false) {
-            i = 0;
+            contadorPreguntas = 0;
             numPreguntas = 0;
             aciertos = 0;
             repetida1 = repetida2 = repetida3 = repetida4 = repetida5 = repetida6 = repetida7 = repetida8 = repetida9 = repetida10 = false;
 
             while (numeroJugadores < 1 || numeroJugadores > 4) {
-
                 System.out.println("Cuantos jugadores vais a jugar? maximo 4 minimo 1");
-                numeroJugadores = Integer.parseInt(sc.nextLine());
-                if (numeroJugadores < 1 || numeroJugadores > 4) {
-                    System.out.println("Porfavor, solo de 1 a 4 jugadores.");
+                try {
+                    numeroJugadores = Integer.parseInt(sc.nextLine());
+                    if (numeroJugadores < 1 || numeroJugadores > 4) {
+                        System.out.println("Porfavor, solo de 1 a 4 jugadores.");
+
+                    }
+                } catch (NumberFormatException ex) {
+                    System.out.println("Porfavor, inserte numeros no letras.");
+                }catch (Exception ex) {
+                        System.out.println(ERRORPARSEINTEXCEPTION);
+                    }
+            }
+            while (contadorJugadores < numeroJugadores) {
+                if ((contadorJugadores + 1) == 1) {
+                    System.out.println("Cual es tu nombre jugador " + (contadorJugadores + 1));
+                    contadorJugadores++;
+                    usuario1 = sc.nextLine();
+
+                } else if ((contadorJugadores + 1) == 2) {
+                    contadorPreguntas = 0;
+                    aciertos = 0;
+                    repetida1 = repetida2 = repetida3 = repetida4 = repetida5 = repetida6 = repetida7 = repetida8 = repetida9 = repetida10 = false;
+                    System.out.println("Cual es tu nombre jugador " + (contadorJugadores + 1));
+                    contadorJugadores++;
+                    usuario2 = sc.nextLine();
+
+                } else if ((contadorJugadores + 1) == 3) {
+                    System.out.println("Cual es tu nombre jugador " + (contadorJugadores + 1));
+                    contadorPreguntas = 0;
+                    aciertos = 0;
+                    repetida1 = repetida2 = repetida3 = repetida4 = repetida5 = repetida6 = repetida7 = repetida8 = repetida9 = repetida10 = false;
+                    contadorJugadores++;
+                    usuario3 = sc.nextLine();
+
+                    System.out.println("Hola " + usuario3 + " tus aciertos son " + aciertos);
+
+                } else if ((contadorJugadores + 1) == 4) {
+                    contadorPreguntas = 0;
+                    aciertos = 0;
+                    repetida1 = repetida2 = repetida3 = repetida4 = repetida5 = repetida6 = repetida7 = repetida8 = repetida9 = repetida10 = false;
+                    System.out.println("Cual es tu nombre jugador " + (contadorJugadores + 1));
+                    contadorJugadores++;
+                    usuario4 = sc.nextLine();
 
                 }
-            }
-                while (contadorJugadores < numeroJugadores) {
-                    if ((contadorJugadores + 1) == 1) {
-                        System.out.println("Cual es tu nombre jugador " + (contadorJugadores + 1));
-                        contadorJugadores++;
-                        usuario1 = sc.nextLine();
+                ranking = ranking + primerPuesto + segundoPuesto + tercerPuesto + cuartoPuesto;
 
-                    } else if ((contadorJugadores + 1) == 2) {
-                        i = 0;
-                        //numPreguntas = 0;
-                        aciertos = 0;
-                        repetida1 = repetida2 = repetida3 = repetida4 = repetida5 = repetida6 = repetida7 = repetida8 = repetida9 = repetida10 = false;
-                        System.out.println("Cual es tu nombre jugador " + (contadorJugadores + 1));
-                        contadorJugadores++;
-                        usuario2 = sc.nextLine();
+                while (numPreguntas < 3 || numPreguntas > 10) {
+                    System.out.println("¿Cuantas preguntas quieres hacer? De 3 a 10 preguntas.");
+                    numeroPreguntasText = sc.nextLine();
 
-                    } else if ((contadorJugadores + 1) == 3) {
-                        System.out.println("Cual es tu nombre jugador " + (contadorJugadores + 1));
-                        i = 0;
-                        //numPreguntas = 0;
-                        aciertos = 0;
-                        repetida1 = repetida2 = repetida3 = repetida4 = repetida5 = repetida6 = repetida7 = repetida8 = repetida9 = repetida10 = false;
-                        contadorJugadores++;
-                        usuario3 = sc.nextLine();
-
-                        System.out.println("Hola " + usuario3 + " tus aciertos son " + aciertos);
-
-                    } else if ((contadorJugadores + 1) == 4) {
-                        i = 0;
-                        //numPreguntas = 0;
-                        aciertos = 0;
-                        repetida1 = repetida2 = repetida3 = repetida4 = repetida5 = repetida6 = repetida7 = repetida8 = repetida9 = repetida10 = false;
-                        System.out.println("Cual es tu nombre jugador " + (contadorJugadores + 1));
-                        contadorJugadores++;
-                        usuario4 = sc.nextLine();
-
-                    }
-                    ranking = ranking + primerPuesto + segundoPuesto + tercerPuesto + cuartoPuesto;
-
-                    while (numPreguntas < 3 || numPreguntas > 10) {
-                        System.out.println("¿Cuantas preguntas quieres hacer? De 3 a 10 preguntas.");
-                        numeroPreguntasText = sc.nextLine();
-
-                        try {
-                            numPreguntas = Integer.parseInt(numeroPreguntasText);
-                            if (numPreguntas < 3 || numPreguntas > 10) {
-                                System.out.println("Porfavor, solo numeros del 3 al 10");
-                            }
-                        } catch (NumberFormatException ex) {
-                            System.out.println("Porfavor, inserte numeros no letras.");
-                        } catch (Exception ex) {
-                            System.out.println(ERRORPARSEINTEXCEPTION);
+                    try {
+                        numPreguntas = Integer.parseInt(numeroPreguntasText);
+                        if (numPreguntas < 3 || numPreguntas > 10) {
+                            System.out.println("Porfavor, solo numeros del 3 al 10");
                         }
+                    } catch (NumberFormatException ex) {
+                        System.out.println("Porfavor, inserte numeros no letras.");
+                    } catch (Exception ex) {
+                        System.out.println(ERRORPARSEINTEXCEPTION);
                     }
-                    System.out.println("Responde a las preguntas con S (si) o N (No)");
+                }
+                System.out.println("Responde a las preguntas con S (si) o N (No)");
 
-                    while (i < numPreguntas) {
-                        numRamdon = (int) Math.floor(Math.random() * (RANGOMAXIMO - RANGOMINIMO + 1) + RANGOMINIMO);
+                while (contadorPreguntas < numPreguntas) {
+                    numRamdon = (int) Math.floor(Math.random() * (RANGO_MAXIMO - RANGO_MINIMO + 1) + RANGO_MINIMO);
 
-                        // Mostramos pregunta según numero random
-                        if (numRamdon == 1 && !repetida1) {
-                            repetida1 = true;
-                            i++;
-                            System.out.println(PREGUNTA1);
+                    // Mostramos pregunta según numero random
+                    if (numRamdon == 1 && !repetida1) {
+                        repetida1 = true;
+                        contadorPreguntas++;
+                        System.out.println(PREGUNTA1);
+                        respuestaUsuario = sc.nextLine();
+
+                        while (!respuestaUsuario.equalsIgnoreCase("NO") && !respuestaUsuario.equalsIgnoreCase("N")
+                                && !respuestaUsuario.equalsIgnoreCase("SI") && !respuestaUsuario.equalsIgnoreCase("S")) {
+                            System.out.println("Por favor, Responda Si o No");
                             respuestaUsuario = sc.nextLine();
+                        }
 
-                            while (!respuestaUsuario.equalsIgnoreCase("NO") && !respuestaUsuario.equalsIgnoreCase("N")
-                                    && !respuestaUsuario.equalsIgnoreCase("SI") && !respuestaUsuario.equalsIgnoreCase("S")) {
-                                System.out.println("Por favor, Responda Si o No");
-                                respuestaUsuario = sc.nextLine();
+                        longitudRespuesta = respuestaUsuario.length();
+                        if (longitudRespuesta == 2) {
+                            if (respuestaUsuario.equalsIgnoreCase("No")) {
+                                respuestaUsuario = "N";
+                            } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
+                                respuestaUsuario = "S";
                             }
+                        }
 
-                            longitudRespuesta = respuestaUsuario.length();
-                            if (longitudRespuesta == 2) {
-                                if (respuestaUsuario.equalsIgnoreCase("No")) {
-                                    respuestaUsuario = "N";
-                                } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
-                                    respuestaUsuario = "S";
-                                }
-                            }
-
-                            if (respuestaUsuario != null && respuestaUsuario.equalsIgnoreCase(RESPUESTA1)) {
-                                aciertos++;
-                                if (aciertos > 1) {
-                                    System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Puntos, Animo!. \n----------------------------------------------------");
-                                } else {
-                                    System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Punto, Animo!. \n----------------------------------------------------");
-
-                                }
+                        if (respuestaUsuario.equalsIgnoreCase(RESPUESTA1)) {
+                            aciertos++;
+                            if (aciertos > 1) {
+                                System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Puntos, Animo!. \n----------------------------------------------------");
                             } else {
-                                System.out.println("\nSon 5: Homer, Marge, Bart, Maggie y Lisa");
+                                System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Punto, Animo!. \n----------------------------------------------------");
+
                             }
-                        } else if (numRamdon == 2 && !repetida2) {
-                            repetida2 = true;
-                            i++;
-                            System.out.println(PREGUNTA2);
+                        } else {
+                            System.out.println("\nSon 5: Homer, Marge, Bart, Maggie y Lisa");
+                        }
+                    } else if (numRamdon == 2 && !repetida2) {
+                        repetida2 = true;
+                        contadorPreguntas++;
+                        System.out.println(PREGUNTA2);
+                        respuestaUsuario = sc.nextLine();
+
+                        while (!respuestaUsuario.equalsIgnoreCase("NO") && !respuestaUsuario.equalsIgnoreCase("N")
+                                && !respuestaUsuario.equalsIgnoreCase("SI") && !respuestaUsuario.equalsIgnoreCase("S")) {
+                            System.out.println("Por favor, Responda Si o No");
                             respuestaUsuario = sc.nextLine();
-
-                            while (!respuestaUsuario.equalsIgnoreCase("NO") && !respuestaUsuario.equalsIgnoreCase("N")
-                                    && !respuestaUsuario.equalsIgnoreCase("SI") && !respuestaUsuario.equalsIgnoreCase("S")) {
-                                System.out.println("Por favor, Responda Si o No");
-                                respuestaUsuario = sc.nextLine();
+                        }
+                        longitudRespuesta = respuestaUsuario.length();
+                        if (longitudRespuesta == 2) {
+                            if (respuestaUsuario.equalsIgnoreCase("No")) {
+                                respuestaUsuario = "N";
+                            } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
+                                respuestaUsuario = "S";
                             }
-                            longitudRespuesta = respuestaUsuario.length();
-                            if (longitudRespuesta == 2) {
-                                if (respuestaUsuario.equalsIgnoreCase("No")) {
-                                    respuestaUsuario = "N";
-                                } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
-                                    respuestaUsuario = "S";
-                                }
-                            }
+                        }
 
-                            if (respuestaUsuario != null && respuestaUsuario.equalsIgnoreCase(RESPUESTA2)) {
-                                aciertos++;
-                                if (aciertos > 1) {
-                                    System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Puntos, Animo!. \n----------------------------------------------------");
-                                } else {
-                                    System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Punto, Animo!. \n----------------------------------------------------");
-
-                                }
+                        if (respuestaUsuario.equalsIgnoreCase(RESPUESTA2)) {
+                            aciertos++;
+                            if (aciertos > 1) {
+                                System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Puntos, Animo!. \n----------------------------------------------------");
                             } else {
-                                System.out.println("\nRealmente fue ella quien disparó, asi que si.");
+                                System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Punto, Animo!. \n----------------------------------------------------");
+
                             }
-                        } else if (numRamdon == 3 && !repetida3) {
-                            repetida3 = true;
-                            i++;
-                            System.out.println(PREGUNTA3);
+                        } else {
+                            System.out.println("\nRealmente fue ella quien disparó, asi que si.");
+                        }
+                    } else if (numRamdon == 3 && !repetida3) {
+                        repetida3 = true;
+                        contadorPreguntas++;
+                        System.out.println(PREGUNTA3);
+                        respuestaUsuario = sc.nextLine();
+                        while (!respuestaUsuario.equalsIgnoreCase("NO") && !respuestaUsuario.equalsIgnoreCase("N")
+                                && !respuestaUsuario.equalsIgnoreCase("SI") && !respuestaUsuario.equalsIgnoreCase("S")) {
+                            System.out.println("Por favor, Responda Si o No");
                             respuestaUsuario = sc.nextLine();
-                            while (!respuestaUsuario.equalsIgnoreCase("NO") && !respuestaUsuario.equalsIgnoreCase("N")
-                                    && !respuestaUsuario.equalsIgnoreCase("SI") && !respuestaUsuario.equalsIgnoreCase("S")) {
-                                System.out.println("Por favor, Responda Si o No");
-                                respuestaUsuario = sc.nextLine();
+                        }
+                        longitudRespuesta = respuestaUsuario.length();
+                        if (longitudRespuesta == 2) {
+                            if (respuestaUsuario.equalsIgnoreCase("No")) {
+                                respuestaUsuario = "N";
+                            } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
+                                respuestaUsuario = "S";
                             }
-                            longitudRespuesta = respuestaUsuario.length();
-                            if (longitudRespuesta == 2) {
-                                if (respuestaUsuario.equalsIgnoreCase("No")) {
-                                    respuestaUsuario = "N";
-                                } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
-                                    respuestaUsuario = "S";
-                                }
-                            }
+                        }
 
-                            if (respuestaUsuario != null && respuestaUsuario.equalsIgnoreCase(RESPUESTA3)) {
-                                aciertos++;
-                                if (aciertos > 1) {
-                                    System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Puntos, Animo!. \n----------------------------------------------------");
-                                } else {
-                                    System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Punto, Animo!. \n----------------------------------------------------");
-
-                                }
+                        if (respuestaUsuario.equalsIgnoreCase(RESPUESTA3)) {
+                            aciertos++;
+                            if (aciertos > 1) {
+                                System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Puntos, Animo!. \n----------------------------------------------------");
                             } else {
-                                System.out.println("\nLa ciudad rival de Springfield es shelbyville");
+                                System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Punto, Animo!. \n----------------------------------------------------");
 
                             }
-                        } else if (numRamdon == 4 && !repetida4) {
-                            repetida4 = true;
-                            i++;
-                            System.out.println(PREGUNTA4);
+                        } else {
+                            System.out.println("\nLa ciudad rival de Springfield es shelbyville");
+
+                        }
+                    } else if (numRamdon == 4 && !repetida4) {
+                        repetida4 = true;
+                        contadorPreguntas++;
+                        System.out.println(PREGUNTA4);
+                        respuestaUsuario = sc.nextLine();
+
+                        while (!respuestaUsuario.equalsIgnoreCase("NO") && !respuestaUsuario.equalsIgnoreCase("N")
+                                && !respuestaUsuario.equalsIgnoreCase("SI") && !respuestaUsuario.equalsIgnoreCase("S")) {
+                            System.out.println("Por favor, Responda Si o No");
                             respuestaUsuario = sc.nextLine();
-
-                            while (!respuestaUsuario.equalsIgnoreCase("NO") && !respuestaUsuario.equalsIgnoreCase("N")
-                                    && !respuestaUsuario.equalsIgnoreCase("SI") && !respuestaUsuario.equalsIgnoreCase("S")) {
-                                System.out.println("Por favor, Responda Si o No");
-                                respuestaUsuario = sc.nextLine();
+                        }
+                        longitudRespuesta = respuestaUsuario.length();
+                        if (longitudRespuesta == 2) {
+                            if (respuestaUsuario.equalsIgnoreCase("No")) {
+                                respuestaUsuario = "N";
+                            } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
+                                respuestaUsuario = "S";
                             }
-                            longitudRespuesta = respuestaUsuario.length();
-                            if (longitudRespuesta == 2) {
-                                if (respuestaUsuario.equalsIgnoreCase("No")) {
-                                    respuestaUsuario = "N";
-                                } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
-                                    respuestaUsuario = "S";
-                                }
-                            }
+                        }
 
-                            if (respuestaUsuario != null && respuestaUsuario.equalsIgnoreCase(RESPUESTA4)) {
-                                aciertos++;
-                                if (aciertos > 1) {
-                                    System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Puntos, Animo!. \n----------------------------------------------------");
-                                } else {
-                                    System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Punto, Animo!. \n----------------------------------------------------");
-
-                                }
+                        if (respuestaUsuario.equalsIgnoreCase(RESPUESTA4)) {
+                            aciertos++;
+                            if (aciertos > 1) {
+                                System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Puntos, Animo!. \n----------------------------------------------------");
                             } else {
-                                System.out.println("\nNo son pareja, aunque siempre aparecen juntos, se trata de dos buenos amigos.");
+                                System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Punto, Animo!. \n----------------------------------------------------");
+
                             }
-                        } else if (numRamdon == 5 && !repetida5) {
-                            repetida5 = true;
-                            i++;
-                            System.out.println(PREGUNTA5);
+                        } else {
+                            System.out.println("\nNo son pareja, aunque siempre aparecen juntos, se trata de dos buenos amigos.");
+                        }
+                    } else if (numRamdon == 5 && !repetida5) {
+                        repetida5 = true;
+                        contadorPreguntas++;
+                        System.out.println(PREGUNTA5);
+                        respuestaUsuario = sc.nextLine();
+                        while (!respuestaUsuario.equalsIgnoreCase("NO") && !respuestaUsuario.equalsIgnoreCase("N")
+                                && !respuestaUsuario.equalsIgnoreCase("SI") && !respuestaUsuario.equalsIgnoreCase("S")) {
+                            System.out.println("Por favor, Responda Si o No");
                             respuestaUsuario = sc.nextLine();
-                            while (!respuestaUsuario.equalsIgnoreCase("NO") && !respuestaUsuario.equalsIgnoreCase("N")
-                                    && !respuestaUsuario.equalsIgnoreCase("SI") && !respuestaUsuario.equalsIgnoreCase("S")) {
-                                System.out.println("Por favor, Responda Si o No");
-                                respuestaUsuario = sc.nextLine();
+                        }
+                        longitudRespuesta = respuestaUsuario.length();
+                        if (longitudRespuesta == 2) {
+                            if (respuestaUsuario.equalsIgnoreCase("No")) {
+                                respuestaUsuario = "N";
+                            } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
+                                respuestaUsuario = "S";
                             }
-                            longitudRespuesta = respuestaUsuario.length();
-                            if (longitudRespuesta == 2) {
-                                if (respuestaUsuario.equalsIgnoreCase("No")) {
-                                    respuestaUsuario = "N";
-                                } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
-                                    respuestaUsuario = "S";
-                                }
-                            }
+                        }
 
-                            if (respuestaUsuario != null && respuestaUsuario.equalsIgnoreCase(RESPUESTA5)) {
-                                aciertos++;
-                                if (aciertos > 1) {
-                                    System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Puntos, Animo!. \n----------------------------------------------------");
-                                } else {
-                                    System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Punto, Animo!. \n----------------------------------------------------");
-
-                                }
+                        if (respuestaUsuario.equalsIgnoreCase(RESPUESTA5)) {
+                            aciertos++;
+                            if (aciertos > 1) {
+                                System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Puntos, Animo!. \n----------------------------------------------------");
                             } else {
-                                System.out.println("\nLos simpsons viajan a Japon con unos billetes que le roban a Ned Flanders.");
+                                System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Punto, Animo!. \n----------------------------------------------------");
+
                             }
-                        } else if (numRamdon == 6 && !repetida6) {
-                            repetida6 = true;
-                            i++;
-                            System.out.println(PREGUNTA6);
+                        } else {
+                            System.out.println("\nLos simpsons viajan a Japon con unos billetes que le roban a Ned Flanders.");
+                        }
+                    } else if (numRamdon == 6 && !repetida6) {
+                        repetida6 = true;
+                        contadorPreguntas++;
+                        System.out.println(PREGUNTA6);
+                        respuestaUsuario = sc.nextLine();
+                        while (!respuestaUsuario.equalsIgnoreCase("NO") && !respuestaUsuario.equalsIgnoreCase("N")
+                                && !respuestaUsuario.equalsIgnoreCase("SI") && !respuestaUsuario.equalsIgnoreCase("S")) {
+                            System.out.println("Por favor, Responda Si o No");
                             respuestaUsuario = sc.nextLine();
-                            while (!respuestaUsuario.equalsIgnoreCase("NO") && !respuestaUsuario.equalsIgnoreCase("N")
-                                    && !respuestaUsuario.equalsIgnoreCase("SI") && !respuestaUsuario.equalsIgnoreCase("S")) {
-                                System.out.println("Por favor, Responda Si o No");
-                                respuestaUsuario = sc.nextLine();
+                        }
+                        longitudRespuesta = respuestaUsuario.length();
+                        if (longitudRespuesta == 2) {
+                            if (respuestaUsuario.equalsIgnoreCase("No")) {
+                                respuestaUsuario = "N";
+                            } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
+                                respuestaUsuario = "S";
                             }
-                            longitudRespuesta = respuestaUsuario.length();
-                            if (longitudRespuesta == 2) {
-                                if (respuestaUsuario.equalsIgnoreCase("No")) {
-                                    respuestaUsuario = "N";
-                                } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
-                                    respuestaUsuario = "S";
-                                }
-                            }
+                        }
 
-                            if (respuestaUsuario != null && respuestaUsuario.equalsIgnoreCase(RESPUESTA6)) {
-                                aciertos++;
-                                if (aciertos > 1) {
-                                    System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Puntos, Animo!. \n----------------------------------------------------");
-                                } else {
-                                    System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Punto, Animo!. \n----------------------------------------------------");
-
-                                }
+                        if (respuestaUsuario.equalsIgnoreCase(RESPUESTA6)) {
+                            aciertos++;
+                            if (aciertos > 1) {
+                                System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Puntos, Animo!. \n----------------------------------------------------");
                             } else {
-                                System.out.println("\nTiene un hermano, el cual le pidio dinero para hacer un traductor de bebes, lo invento y triunfó.");
+                                System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Punto, Animo!. \n----------------------------------------------------");
 
                             }
-                        } else if (numRamdon == 7 && !repetida7) {
-                            repetida7 = true;
-                            i++;
-                            System.out.println(PREGUNTA7);
+                        } else {
+                            System.out.println("\nTiene un hermano, el cual le pidio dinero para hacer un traductor de bebes, lo invento y triunfó.");
+
+                        }
+                    } else if (numRamdon == 7 && !repetida7) {
+                        repetida7 = true;
+                        contadorPreguntas++;
+                        System.out.println(PREGUNTA7);
+                        respuestaUsuario = sc.nextLine();
+                        while (!respuestaUsuario.equalsIgnoreCase("NO") && !respuestaUsuario.equalsIgnoreCase("N")
+                                && !respuestaUsuario.equalsIgnoreCase("SI") && !respuestaUsuario.equalsIgnoreCase("S")) {
+                            System.out.println("Por favor, Responda Si o No");
                             respuestaUsuario = sc.nextLine();
-                            while (!respuestaUsuario.equalsIgnoreCase("NO") && !respuestaUsuario.equalsIgnoreCase("N")
-                                    && !respuestaUsuario.equalsIgnoreCase("SI") && !respuestaUsuario.equalsIgnoreCase("S")) {
-                                System.out.println("Por favor, Responda Si o No");
-                                respuestaUsuario = sc.nextLine();
+                        }
+                        longitudRespuesta = respuestaUsuario.length();
+                        if (longitudRespuesta == 2) {
+                            if (respuestaUsuario.equalsIgnoreCase("No")) {
+                                respuestaUsuario = "N";
+                            } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
+                                respuestaUsuario = "S";
                             }
-                            longitudRespuesta = respuestaUsuario.length();
-                            if (longitudRespuesta == 2) {
-                                if (respuestaUsuario.equalsIgnoreCase("No")) {
-                                    respuestaUsuario = "N";
-                                } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
-                                    respuestaUsuario = "S";
-                                }
-                            }
+                        }
 
-                            if (respuestaUsuario != null && respuestaUsuario.equalsIgnoreCase(RESPUESTA7)) {
-                                aciertos++;
-                                if (aciertos > 1) {
-                                    System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Puntos, Animo!. \n----------------------------------------------------");
-                                } else {
-                                    System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Punto, Animo!. \n----------------------------------------------------");
-
-                                }
+                        if (respuestaUsuario.equalsIgnoreCase(RESPUESTA7)) {
+                            aciertos++;
+                            if (aciertos > 1) {
+                                System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Puntos, Animo!. \n----------------------------------------------------");
                             } else {
-                                System.out.println("\nBart tiene un hermano gemelo llamado Hugo, el cual aparecio en un episodio de hallowen.");
+                                System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Punto, Animo!. \n----------------------------------------------------");
+
                             }
-                        } else if (numRamdon == 8 && !repetida8) {
-                            repetida8 = true;
-                            i++;
-                            System.out.println(PREGUNTA8);
+                        } else {
+                            System.out.println("\nBart tiene un hermano gemelo llamado Hugo, el cual aparecio en un episodio de hallowen.");
+                        }
+                    } else if (numRamdon == 8 && !repetida8) {
+                        repetida8 = true;
+                        contadorPreguntas++;
+                        System.out.println(PREGUNTA8);
+                        respuestaUsuario = sc.nextLine();
+                        while (!respuestaUsuario.equalsIgnoreCase("NO") && !respuestaUsuario.equalsIgnoreCase("N")
+                                && !respuestaUsuario.equalsIgnoreCase("SI") && !respuestaUsuario.equalsIgnoreCase("S")) {
+                            System.out.println("Por favor, Responda Si o No");
                             respuestaUsuario = sc.nextLine();
-                            while (!respuestaUsuario.equalsIgnoreCase("NO") && !respuestaUsuario.equalsIgnoreCase("N")
-                                    && !respuestaUsuario.equalsIgnoreCase("SI") && !respuestaUsuario.equalsIgnoreCase("S")) {
-                                System.out.println("Por favor, Responda Si o No");
-                                respuestaUsuario = sc.nextLine();
+                        }
+                        longitudRespuesta = respuestaUsuario.length();
+                        if (longitudRespuesta == 2) {
+                            if (respuestaUsuario.equalsIgnoreCase("No")) {
+                                respuestaUsuario = "N";
+                            } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
+                                respuestaUsuario = "S";
                             }
-                            longitudRespuesta = respuestaUsuario.length();
-                            if (longitudRespuesta == 2) {
-                                if (respuestaUsuario.equalsIgnoreCase("No")) {
-                                    respuestaUsuario = "N";
-                                } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
-                                    respuestaUsuario = "S";
-                                }
-                            }
+                        }
 
-                            if (respuestaUsuario != null && respuestaUsuario.equalsIgnoreCase(RESPUESTA8)) {
-                                aciertos++;
-                                if (aciertos > 1) {
-                                    System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Puntos, Animo!. \n----------------------------------------------------");
-                                } else {
-                                    System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Punto, Animo!. \n----------------------------------------------------");
-
-                                }
+                        if (respuestaUsuario.equalsIgnoreCase(RESPUESTA8)) {
+                            aciertos++;
+                            if (aciertos > 1) {
+                                System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Puntos, Animo!. \n----------------------------------------------------");
                             } else {
-                                System.out.println("\nSegun un Brujo adivino, jefe de un casino, que predie el futuro ");
-                                System.out.println("en los Simpsons, Lisa acabaria de Presidenta de los EE.UU");
+                                System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Punto, Animo!. \n----------------------------------------------------");
+
                             }
-                        } else if (numRamdon == 9 && !repetida9) {
-                            repetida9 = true;
-                            i++;
-                            System.out.println(PREGUNTA9);
+                        } else {
+                            System.out.println("\nSegun un Brujo adivino, jefe de un casino, que predie el futuro ");
+                            System.out.println("en los Simpsons, Lisa acabaria de Presidenta de los EE.UU");
+                        }
+                    } else if (numRamdon == 9 && !repetida9) {
+                        repetida9 = true;
+                        contadorPreguntas++;
+                        System.out.println(PREGUNTA9);
+                        respuestaUsuario = sc.nextLine();
+                        while (!respuestaUsuario.equalsIgnoreCase("NO") && !respuestaUsuario.equalsIgnoreCase("N")
+                                && !respuestaUsuario.equalsIgnoreCase("SI") && !respuestaUsuario.equalsIgnoreCase("S")) {
+                            System.out.println("Por favor, Responda Si o No");
                             respuestaUsuario = sc.nextLine();
-                            while (!respuestaUsuario.equalsIgnoreCase("NO") && !respuestaUsuario.equalsIgnoreCase("N")
-                                    && !respuestaUsuario.equalsIgnoreCase("SI") && !respuestaUsuario.equalsIgnoreCase("S")) {
-                                System.out.println("Por favor, Responda Si o No");
-                                respuestaUsuario = sc.nextLine();
+                        }
+                        longitudRespuesta = respuestaUsuario.length();
+                        if (longitudRespuesta == 2) {
+                            if (respuestaUsuario.equalsIgnoreCase("No")) {
+                                respuestaUsuario = "N";
+                            } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
+                                respuestaUsuario = "S";
                             }
-                            longitudRespuesta = respuestaUsuario.length();
-                            if (longitudRespuesta == 2) {
-                                if (respuestaUsuario.equalsIgnoreCase("No")) {
-                                    respuestaUsuario = "N";
-                                } else if (respuestaUsuario.equalsIgnoreCase("Si")) {
-                                    respuestaUsuario = "S";
-                                }
-                            }
+                        }
 
-                            if (respuestaUsuario != null && respuestaUsuario.equalsIgnoreCase(RESPUESTA9)) {
-                                aciertos++;
-                                if (aciertos > 1) {
-                                    System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Puntos, Animo!. \n----------------------------------------------------");
-                                } else {
-                                    System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Punto, Animo!. \n----------------------------------------------------");
-
-                                }
+                        if (respuestaUsuario.equalsIgnoreCase(RESPUESTA9)) {
+                            aciertos++;
+                            if (aciertos > 1) {
+                                System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Puntos, Animo!. \n----------------------------------------------------");
                             } else {
-                                System.out.println("\nRealmente si, Dios y Jesucristo, aparecen resprentados con 5 dedos.");
+                                System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Punto, Animo!. \n----------------------------------------------------");
 
                             }
-                        } else if (numRamdon == 10 && !repetida10) {
-                            repetida10 = true;
-                            i++;
-                            System.out.println(PREGUNTA10);
-                            respuestaUsuario = sc.nextLine();
-                            if (respuestaUsuario != null && respuestaUsuario.equalsIgnoreCase(RESPUESTA10)) {
-                                aciertos++;
-                                if (aciertos > 1) {
-                                    System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Puntos, Animo!. \n----------------------------------------------------");
-                                } else {
-                                    System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Punto, Animo!. \n----------------------------------------------------");
+                        } else {
+                            System.out.println("\nRealmente si, Dios y Jesucristo, aparecen resprentados con 5 dedos.");
 
-                                }
+                        }
+                    } else if (numRamdon == 10 && !repetida10) {
+                        repetida10 = true;
+                        contadorPreguntas++;
+                        System.out.println(PREGUNTA10);
+                        respuestaUsuario = sc.nextLine();
+                        if (respuestaUsuario.equalsIgnoreCase(RESPUESTA10)) {
+                            aciertos++;
+                            if (aciertos > 1) {
+                                System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Puntos, Animo!. \n----------------------------------------------------");
                             } else {
+                                System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Punto, Animo!. \n----------------------------------------------------");
 
-                                if (RESPUESTA10.length() == respuestaUsuario.length()) {
-                                    respuestaUsuario = respuestaUsuario.toUpperCase();
-                                    if (RESPUESTA10.charAt(0) == respuestaUsuario.charAt(0)
-                                            || RESPUESTA10.charAt(1) == respuestaUsuario.charAt(1)) {
-                                        repetida10 = true;
-                                        System.out.println("\nCasi, casi, venga te doy medio punto.");
-                                        aciertos = aciertos + 0.5;
-                                        if (aciertos > 1) {
-                                            System.out.println("\nLlevas un total de " + aciertos + " Puntos, Animo!. \n----------------------------------------------------");
-                                        } else {
-                                            System.out.println("\nLlevas un total de " + aciertos + " Punto, Animo!. \n----------------------------------------------------");
+                            }
+                        } else {
 
-                                        }
+                            if (RESPUESTA10.length() == respuestaUsuario.length()) {
+                                respuestaUsuario = respuestaUsuario.toUpperCase();
+                                if (RESPUESTA10.charAt(0) == respuestaUsuario.charAt(0)
+                                        || RESPUESTA10.charAt(1) == respuestaUsuario.charAt(1)) {
+                                    repetida10 = true;
+                                    System.out.println("\nCasi, casi, venga te doy medio punto.");
+                                    aciertos = aciertos + 0.5;
+                                    if (aciertos > 1) {
+                                        System.out.println("\nLlevas un total de " + aciertos + " Puntos, Animo!. \n----------------------------------------------------");
                                     } else {
-                                        System.out.println("\nEl pelo y la oreja de homer forman las iniciales del creador MG.");
+                                        System.out.println("\nLlevas un total de " + aciertos + " Punto, Animo!. \n----------------------------------------------------");
 
                                     }
                                 } else {
-                                    System.out.println("\nlas palabras no tienen la misma longitud, creo que no te la sabes...");
+                                    System.out.println("\nEl pelo y la oreja de homer forman las iniciales del creador MG.");
+
                                 }
+                            } else {
+                                System.out.println("\nlas palabras no tienen la misma longitud, creo que no te la sabes...");
                             }
                         }
-                        if (contadorJugadores == 1) {
-                            aciertos1 = aciertos;
-                        } else if (contadorJugadores == 2) {
-                            aciertos2 = aciertos;
-                        } else if (contadorJugadores == 3) {
-                            aciertos3 = aciertos;
+                    }
+                    if (contadorJugadores == 1) {
+                        aciertos1 = aciertos;
+                    } else if (contadorJugadores == 2) {
+                        aciertos2 = aciertos;
+                    } else if (contadorJugadores == 3) {
+                        aciertos3 = aciertos;
+                    } else if (contadorJugadores == 4) {
+                        aciertos4 = aciertos;
+                    }
 
-                        } else if (contadorJugadores == 4) {
-                            aciertos4 = aciertos;
+                    switch (contadorJugadores) {
+                        case 1:
+                            primerPuesto = usuario1 + aciertos1;
+                            ranking = primerPuesto;
 
-                        }
+                            break;
+                        case 2:
+                            if (aciertos2 > aciertos1) {
 
-                        switch (contadorJugadores) {
-                            case 1:
-                                ranking = primerPuesto;
-                                System.out.println(ranking);
-
-                                break;
-                            case 2:
+                                primerPuesto = usuario2 + aciertos2;
+                                segundoPuesto = usuario1 + aciertos1;
 
                                 ranking = primerPuesto + segundoPuesto;
-                                System.out.println(ranking);
+                            } else {
 
-                                break;
-                            case 3:
-                                ranking = primerPuesto + segundoPuesto + tercerPuesto;
-                                System.out.println(ranking);
+                                segundoPuesto = usuario2 + aciertos2;
+                                primerPuesto = usuario1 + aciertos1;
 
-                                break;
-                            case 4:
-                                ranking = primerPuesto + segundoPuesto + tercerPuesto;
-                                System.out.println(ranking);
+                                ranking = primerPuesto + segundoPuesto;
 
-                                break;
-                            default:
-                                throw new AssertionError();
-                        }
+                            }
 
+                            break;
+                        case 3:
+                            if (aciertos2 > aciertos1) {
+                                if (aciertos2 > aciertos3) {
+                                    primerPuesto = usuario2 + aciertos2;
+                                }
+
+                            } else if (aciertos2 > aciertos3) {
+
+                            }
+                            break;
+                        case 4:
+                            ranking = primerPuesto + segundoPuesto + tercerPuesto;
+
+                            break;
+                        default:
                     }
-                    porcentaje = (aciertos * 100) / numPreguntas;
-                    if (porcentaje <= 33) {
-                        System.out.print("\n----------------------------------------------------\nSubscribete a Disney plus y empiezala de nuevo.\n----------------------------------------------------\n");
-                    } else if (porcentaje <= 66) {
-                        System.out.print("\n----------------------------------------------------\nNo prestaste mucha atención a la serie.\n----------------------------------------------------\n");
-                    } else if (porcentaje <= 99.9) {
-                        System.out.print("\n----------------------------------------------------\nVeo que te gusta la serie, enhorabuena.\n----------------------------------------------------\n");
-                    } else if (porcentaje <= 100) {
-                        System.out.print("\n----------------------------------------------------\n¿Eres Matt Groening? PER-FEC-TO!\n----------------------------------------------------\n");
-                    }
+                }
+                porcentajeDeAciertos = (aciertos * 100) / numPreguntas;
+                if (porcentajeDeAciertos <= 33) {
+                    System.out.print("\n----------------------------------------------------\nSubscribete a Disney plus y empiezala de nuevo.\n----------------------------------------------------\n");
+                } else if (porcentajeDeAciertos <= 66) {
+                    System.out.print("\n----------------------------------------------------\nNo prestaste mucha atención a la serie.\n----------------------------------------------------\n");
+                } else if (porcentajeDeAciertos <= 99.9) {
+                    System.out.print("\n----------------------------------------------------\nVeo que te gusta la serie, enhorabuena.\n----------------------------------------------------\n");
+                } else if (porcentajeDeAciertos <= 100) {
+                    System.out.print("\n----------------------------------------------------\n¿Eres Matt Groening? PER-FEC-TO!\n----------------------------------------------------\n");
+                }
 
-                    System.out.println(String.format("Has acertado el  %.02f", porcentaje) + "% de las preguntas.");
-                    ranking = primerPuesto + segundoPuesto + tercerPuesto + cuartoPuesto;
-                    System.out.println(ranking);
-
-                }
-                System.out.println("\n¿Quieres volver a jugar?");
-                volverAJugar = sc.nextLine();
-                while (!volverAJugar.equalsIgnoreCase("NO") && !volverAJugar.equalsIgnoreCase("N")
-                        && !volverAJugar.equalsIgnoreCase("SI") && !volverAJugar.equalsIgnoreCase("S")) {
-                    System.out.println("Por favor, Responda Si o No");
-                    volverAJugar = sc.nextLine();
-                }
-                if (volverAJugar.equalsIgnoreCase("NO") || volverAJugar.equalsIgnoreCase("N")) {
-                    jugar = false;
-                    System.out.println("Gracias por jugar.");
-                    break;
-                } else if (volverAJugar.equalsIgnoreCase("SI") || volverAJugar.equalsIgnoreCase("S")) {
-                    System.out.println("Allá vamos!");
-                }
-                if (numeroJugadores > 1) {
-                    System.out.println("¿Sereis los mismos jugadores?");
-                    mismosJugadores = sc.nextLine();
-                    if (mismosJugadores.equalsIgnoreCase("NO")) {
-                        numeroJugadores = 0;
-
-                    } 
-                    contadorJugadores = 0;
-                }
+                System.out.println(String.format("Has acertado el  %.02f", porcentajeDeAciertos) + "% de las preguntas.");
+                ranking = primerPuesto + segundoPuesto + tercerPuesto + cuartoPuesto;
+                System.out.println(ranking);
 
             }
+            System.out.println("\n¿Quieres volver a jugar?");
+            volverAJugar = sc.nextLine();
+            while (!volverAJugar.equalsIgnoreCase("NO") && !volverAJugar.equalsIgnoreCase("N")
+                    && !volverAJugar.equalsIgnoreCase("SI") && !volverAJugar.equalsIgnoreCase("S")) {
+                System.out.println("Por favor, Responda Si o No");
+                volverAJugar = sc.nextLine();
+            }
+            if (volverAJugar.equalsIgnoreCase("NO") || volverAJugar.equalsIgnoreCase("N")) {
+                jugar = false;
+                System.out.println("Gracias por jugar.");
+                break;
+            } else if (volverAJugar.equalsIgnoreCase("SI") || volverAJugar.equalsIgnoreCase("S")) {
+                System.out.println("Allá vamos!");
+            }
+            if (numeroJugadores > 1) {
+                System.out.println("¿Sereis los mismos jugadores?");
+                mismosJugadores = sc.nextLine();
+                if (mismosJugadores.equalsIgnoreCase("NO")) {
+                    numeroJugadores = 0;
 
+                }
+            }
+            contadorJugadores = 0;
         }
-    }
 
+    }
+}

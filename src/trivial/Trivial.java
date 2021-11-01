@@ -9,6 +9,7 @@ public class Trivial {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        // Declaramos la variables a utilizar
         final String NOMBRE_TRIVIAL = "Los Simpsons";
         final String PREGUNTA1 = "\n¿La Familia Simpson se componia de 6 Miembos?";
         final String PREGUNTA2 = "\n¿Maggie tuvo algo que ver con el disparo hacia Sr. Burns?";
@@ -29,8 +30,10 @@ public class Trivial {
         final String RESPUESTA7 = "S";
         final String RESPUESTA8 = "S";
         final String RESPUESTA9 = "S";
-        final String RESPUESTA10 = "MG"; // me diga las dos iniciales a la vez
+        final String RESPUESTA10 = "MG"; // Generamos una pregunta con dos posibles opciones ya que M es un char y G es otro char a utilizar como respuesta.
+        //Inicializamos todas las variables Boolean en una frase para ahorrar espacio.
         boolean repetida1 = false, repetida2 = false, repetida3 = false, repetida4 = false, repetida5 = false, repetida6 = false, repetida7 = false, repetida8 = false, repetida9 = false, repetida10 = false;
+        // inicializo las String sin nada dentro para que no me de error de iniciacion.
         String usuario1 = "", primerPuesto = "";
         String usuario2 = "", segundoPuesto = "";
         String usuario3 = "", tercerPuesto = "";
@@ -40,13 +43,14 @@ public class Trivial {
         String mismosJugadores;
         String ranking = "";
         String respuestaUsuario;
-        final String ERRORPARSEINTEXCEPTION = "Error inesperado.";
+        final String ERRORPARSEINTEXCEPTION = "Error inesperado."; // creo las variables de mensaje de las Excepciones
         String volverAJugar;
+        //Aqui se almacenaran los aciertos de los posibles 4 jugadores.
         double aciertos1 = 0;
         double aciertos2 = 0;
         double aciertos3 = 0;
         double aciertos4 = 0;
-        boolean jugar = true;
+        boolean jugar = true; // Variable que define si se sige jugando o no (True o False)
         int contadorPreguntas = 0;
         int numRamdon;
         int numPreguntas;
@@ -55,6 +59,8 @@ public class Trivial {
         String numeroPreguntasText;
         int longitudRespuesta = 0;
         double aciertos;
+        double tmpAciertos;
+        String tmpUsuario;
         double porcentajeDeAciertos;
         System.out.println("Bienvenidos al trivial de " + NOMBRE_TRIVIAL + ".");
 
@@ -63,7 +69,14 @@ public class Trivial {
             numPreguntas = 0;
             aciertos = 0;
             repetida1 = repetida2 = repetida3 = repetida4 = repetida5 = repetida6 = repetida7 = repetida8 = repetida9 = repetida10 = false;
-
+            usuario1 = "";
+            usuario2 = "";
+            usuario3 = "";
+            usuario4 = "";
+            aciertos1 = 0;
+            aciertos2 = 0;
+            aciertos3 = 0;
+            aciertos4 = 0;
             while (numeroJugadores < 1 || numeroJugadores > 4) {
                 System.out.println("Cuantos jugadores vais a jugar? maximo 4 minimo 1");
                 try {
@@ -74,9 +87,9 @@ public class Trivial {
                     }
                 } catch (NumberFormatException ex) {
                     System.out.println("Porfavor, inserte numeros no letras.");
-                }catch (Exception ex) {
-                        System.out.println(ERRORPARSEINTEXCEPTION);
-                    }
+                } catch (Exception ex) {
+                    System.out.println(ERRORPARSEINTEXCEPTION);
+                }
             }
             while (contadorJugadores < numeroJugadores) {
                 if ((contadorJugadores + 1) == 1) {
@@ -100,18 +113,14 @@ public class Trivial {
                     contadorJugadores++;
                     usuario3 = sc.nextLine();
 
-                    System.out.println("Hola " + usuario3 + " tus aciertos son " + aciertos);
-
                 } else if ((contadorJugadores + 1) == 4) {
+                    System.out.println("Cual es tu nombre jugador " + (contadorJugadores + 1));
                     contadorPreguntas = 0;
                     aciertos = 0;
                     repetida1 = repetida2 = repetida3 = repetida4 = repetida5 = repetida6 = repetida7 = repetida8 = repetida9 = repetida10 = false;
-                    System.out.println("Cual es tu nombre jugador " + (contadorJugadores + 1));
                     contadorJugadores++;
                     usuario4 = sc.nextLine();
-
                 }
-                ranking = ranking + primerPuesto + segundoPuesto + tercerPuesto + cuartoPuesto;
 
                 while (numPreguntas < 3 || numPreguntas > 10) {
                     System.out.println("¿Cuantas preguntas quieres hacer? De 3 a 10 preguntas.");
@@ -449,55 +458,76 @@ public class Trivial {
                             }
                         }
                     }
-                    if (contadorJugadores == 1) {
-                        aciertos1 = aciertos;
-                    } else if (contadorJugadores == 2) {
-                        aciertos2 = aciertos;
-                    } else if (contadorJugadores == 3) {
-                        aciertos3 = aciertos;
-                    } else if (contadorJugadores == 4) {
-                        aciertos4 = aciertos;
-                    }
 
-                    switch (contadorJugadores) {
+                    switch ((contadorJugadores)) {
                         case 1:
-                            primerPuesto = usuario1 + aciertos1;
-                            ranking = primerPuesto;
-
-                            break;
+                            aciertos1 = aciertos;
                         case 2:
-                            if (aciertos2 > aciertos1) {
-
-                                primerPuesto = usuario2 + aciertos2;
-                                segundoPuesto = usuario1 + aciertos1;
-
-                                ranking = primerPuesto + segundoPuesto;
-                            } else {
-
-                                segundoPuesto = usuario2 + aciertos2;
-                                primerPuesto = usuario1 + aciertos1;
-
-                                ranking = primerPuesto + segundoPuesto;
-
-                            }
-
-                            break;
+                            aciertos2 = aciertos;
                         case 3:
-                            if (aciertos2 > aciertos1) {
-                                if (aciertos2 > aciertos3) {
-                                    primerPuesto = usuario2 + aciertos2;
-                                }
-
-                            } else if (aciertos2 > aciertos3) {
-
-                            }
-                            break;
+                            aciertos3 = aciertos;
                         case 4:
-                            ranking = primerPuesto + segundoPuesto + tercerPuesto;
+                            aciertos4 = aciertos;
 
-                            break;
-                        default:
                     }
+                    System.out.println(usuario1 + usuario2 + usuario3 + usuario4);
+
+                    if (aciertos1 < aciertos2) {
+                        tmpAciertos = aciertos1; //tmpAciertos = 6
+                        tmpUsuario = usuario1;
+                        aciertos1 = aciertos2; // a = 8
+                        usuario1 = usuario2;
+                        aciertos2 = tmpAciertos; // b = 6
+                        usuario2 = tmpUsuario;
+
+                        // a= 8    b=6
+                    }
+
+                    if (aciertos3 < aciertos4) {
+                        tmpAciertos = aciertos3;
+                        tmpUsuario = usuario3;
+                        aciertos3 = aciertos4;
+                        usuario3 = usuario4;
+                        aciertos4 = tmpAciertos;
+                        usuario4 = tmpUsuario;
+                    }
+
+                    if (aciertos1 < aciertos3) {
+
+                        tmpAciertos = aciertos1;
+                        tmpUsuario = usuario1;
+
+                        aciertos1 = aciertos3;
+                        usuario1 = usuario3;
+
+                        aciertos3 = tmpAciertos;
+                        usuario3 = tmpUsuario;
+
+                    }
+
+                    if (aciertos2 < aciertos4) {
+                        tmpAciertos = aciertos2;
+                        tmpUsuario = usuario2;
+
+                        aciertos2 = aciertos4;
+                        usuario2 = usuario4;
+
+                        aciertos4 = tmpAciertos;
+                        usuario4 = tmpUsuario;
+
+                    }
+                    if (aciertos2 < aciertos3) {
+
+                        tmpAciertos = aciertos2;
+                        tmpUsuario = usuario2;
+
+                        aciertos2 = aciertos3;
+                        usuario2 = usuario3;
+
+                        aciertos3 = tmpAciertos;
+                        usuario3 = tmpUsuario;
+                    }
+
                 }
                 porcentajeDeAciertos = (aciertos * 100) / numPreguntas;
                 if (porcentajeDeAciertos <= 33) {
@@ -511,10 +541,11 @@ public class Trivial {
                 }
 
                 System.out.println(String.format("Has acertado el  %.02f", porcentajeDeAciertos) + "% de las preguntas.");
-                ranking = primerPuesto + segundoPuesto + tercerPuesto + cuartoPuesto;
-                System.out.println(ranking);
 
             }
+
+            System.out.println("Este es el ranking: " + "\n" + " " + aciertos1 + " " + usuario1 + " \n " + aciertos2 + " " + usuario2 + " \n " + aciertos3 + " " + usuario3 + " \n " + aciertos4 + " " + usuario4);
+
             System.out.println("\n¿Quieres volver a jugar?");
             volverAJugar = sc.nextLine();
             while (!volverAJugar.equalsIgnoreCase("NO") && !volverAJugar.equalsIgnoreCase("N")

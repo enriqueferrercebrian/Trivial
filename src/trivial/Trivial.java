@@ -472,7 +472,24 @@ public class Trivial {
                     }
                     System.out.println(usuario1 + usuario2 + usuario3 + usuario4);
 
-                    if (aciertos1 < aciertos2) {
+                   
+
+                }
+                porcentajeDeAciertos = (aciertos * 100) / numPreguntas;
+                if (porcentajeDeAciertos <= 33) {
+                    System.out.print("\n----------------------------------------------------\nSubscribete a Disney plus y empiezala de nuevo.\n----------------------------------------------------\n");
+                } else if (porcentajeDeAciertos <= 66) {
+                    System.out.print("\n----------------------------------------------------\nNo prestaste mucha atención a la serie.\n----------------------------------------------------\n");
+                } else if (porcentajeDeAciertos <= 99.9) {
+                    System.out.print("\n----------------------------------------------------\nVeo que te gusta la serie, enhorabuena.\n----------------------------------------------------\n");
+                } else if (porcentajeDeAciertos <= 100) {
+                    System.out.print("\n----------------------------------------------------\n¿Eres Matt Groening? PER-FEC-TO!\n----------------------------------------------------\n");
+                }
+
+                System.out.println(String.format("Has acertado el  %.02f", porcentajeDeAciertos) + "% de las preguntas.");
+
+            }
+             if (aciertos1 < aciertos2) {
                         tmpAciertos = aciertos1; //tmpAciertos = 6
                         tmpUsuario = usuario1;
                         aciertos1 = aciertos2; // a = 8
@@ -527,22 +544,6 @@ public class Trivial {
                         aciertos3 = tmpAciertos;
                         usuario3 = tmpUsuario;
                     }
-
-                }
-                porcentajeDeAciertos = (aciertos * 100) / numPreguntas;
-                if (porcentajeDeAciertos <= 33) {
-                    System.out.print("\n----------------------------------------------------\nSubscribete a Disney plus y empiezala de nuevo.\n----------------------------------------------------\n");
-                } else if (porcentajeDeAciertos <= 66) {
-                    System.out.print("\n----------------------------------------------------\nNo prestaste mucha atención a la serie.\n----------------------------------------------------\n");
-                } else if (porcentajeDeAciertos <= 99.9) {
-                    System.out.print("\n----------------------------------------------------\nVeo que te gusta la serie, enhorabuena.\n----------------------------------------------------\n");
-                } else if (porcentajeDeAciertos <= 100) {
-                    System.out.print("\n----------------------------------------------------\n¿Eres Matt Groening? PER-FEC-TO!\n----------------------------------------------------\n");
-                }
-
-                System.out.println(String.format("Has acertado el  %.02f", porcentajeDeAciertos) + "% de las preguntas.");
-
-            }
 
             System.out.println("Este es el ranking: " + "\n" + " " + aciertos1 + " " + usuario1 + " \n " + aciertos2 + " " + usuario2 + " \n " + aciertos3 + " " + usuario3 + " \n " + aciertos4 + " " + usuario4);
 

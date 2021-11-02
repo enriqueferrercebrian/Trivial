@@ -486,7 +486,124 @@ public class Trivial {
                 System.out.println(String.format("Has acertado el  %.02f", porcentajeDeAciertos) + "% de las preguntas.\n----------------------------------------------------");
 
             }
-            if (aciertos1 < aciertos2) {
+          /*  if (aciertos1 < aciertos2) {
+                tmpAciertos = aciertos1; //tmpAciertos = 6
+                tmpUsuario = usuario1;
+                aciertos1 = aciertos2; // a = 8
+                usuario1 = usuario2;
+                aciertos2 = tmpAciertos; // b = 6
+                usuario2 = tmpUsuario;
+
+                // a= 8    b=6
+            }
+
+            if (aciertos3 < aciertos4) {
+                tmpAciertos = aciertos3;
+                tmpUsuario = usuario3;
+                aciertos3 = aciertos4;
+                usuario3 = usuario4;
+                aciertos4 = tmpAciertos;
+                usuario4 = tmpUsuario;
+            }
+
+            if (aciertos1 < aciertos3) {
+
+                tmpAciertos = aciertos1;
+                tmpUsuario = usuario1;
+
+                aciertos1 = aciertos3;
+                usuario1 = usuario3;
+
+                aciertos3 = tmpAciertos;
+                usuario3 = tmpUsuario;
+
+            }
+
+            if (aciertos2 < aciertos4) {
+                tmpAciertos = aciertos2;
+                tmpUsuario = usuario2;
+
+                aciertos2 = aciertos4;
+                usuario2 = usuario4;
+
+                aciertos4 = tmpAciertos;
+                usuario4 = tmpUsuario;
+
+            }
+            if (aciertos2 < aciertos3) {
+
+                tmpAciertos = aciertos2;
+                tmpUsuario = usuario2;
+
+                aciertos2 = aciertos3;
+                usuario2 = usuario3;
+
+                aciertos3 = tmpAciertos;
+                usuario3 = tmpUsuario;
+            }*/
+
+            if (numeroJugadores == 1) {
+                System.out.println("");
+                
+            } else if (numeroJugadores == 2) {
+                
+                
+                  if (aciertos1 < aciertos2) {
+                    tmpAciertos = aciertos1;
+                    tmpUsuario = usuario1;
+                    aciertos1 = aciertos2;
+                    usuario1 = usuario2;
+                    aciertos2 = tmpAciertos;
+                    usuario2 = tmpUsuario;
+
+                }
+
+              
+
+             
+                
+                System.out.println("Este es el ranking: " + "\n" + " " + aciertos1 + " " + usuario1 + " \n " + aciertos2 + " " + usuario2);
+            } else if (numeroJugadores == 3) {
+                
+                
+                 if (aciertos1 < aciertos2) {
+                    tmpAciertos = aciertos1;
+                    tmpUsuario = usuario1;
+                    aciertos1 = aciertos2;
+                    usuario1 = usuario2;
+                    aciertos2 = tmpAciertos;
+                    usuario2 = tmpUsuario;
+
+                }
+
+                if (aciertos1 < aciertos3) {
+
+                    tmpAciertos = aciertos1;
+                    tmpUsuario = usuario1;
+
+                    aciertos1 = aciertos3;
+                    usuario1 = usuario3;
+
+                    aciertos3 = tmpAciertos;
+                    usuario3 = tmpUsuario;
+
+                }
+
+                if (aciertos2 < aciertos3) {
+
+                    tmpAciertos = aciertos2;
+                    tmpUsuario = usuario2;
+
+                    aciertos2 = aciertos3;
+                    usuario2 = usuario3;
+
+                    aciertos3 = tmpAciertos;
+                    usuario3 = tmpUsuario;
+                }
+                System.out.println("Este es el ranking: " + "\n" + " " + aciertos1 + " " + usuario1 + " \n " + aciertos2 + " " + usuario2 + " \n " + aciertos3 + " " + usuario3);
+            } else if (numeroJugadores == 4) {
+                
+                 if (aciertos1 < aciertos2) {
                 tmpAciertos = aciertos1; //tmpAciertos = 6
                 tmpUsuario = usuario1;
                 aciertos1 = aciertos2; // a = 8
@@ -541,14 +658,6 @@ public class Trivial {
                 aciertos3 = tmpAciertos;
                 usuario3 = tmpUsuario;
             }
-
-            if (numeroJugadores == 1) {
-                System.out.println("");
-            } else if (numeroJugadores == 2) {
-                System.out.println("Este es el ranking: " + "\n" + " " + aciertos1 + " " + usuario1 + " \n " + aciertos2 + " " + usuario2);
-            } else if (numeroJugadores == 3) {
-                System.out.println("Este es el ranking: " + "\n" + " " + aciertos1 + " " + usuario1 + " \n " + aciertos2 + " " + usuario2 + " \n " + aciertos3 + " " + usuario3);
-            } else if (numeroJugadores == 4) {
                 System.out.println("Este es el ranking: " + "\n" + " " + aciertos1 + " " + usuario1 + " \n " + aciertos2 + " " + usuario2 + " \n " + aciertos3 + " " + usuario3 + " \n " + aciertos4 + " " + usuario4);
             }
 

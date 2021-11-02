@@ -38,10 +38,14 @@ public class Trivial {
         String usuario2 = "", segundoPuesto = "";
         String usuario3 = "", tercerPuesto = "";
         String usuario4 = "", cuartoPuesto = "";
+        // Aqui creamos y inicializamos el contador de jugadores y la variables de jugadores, la cual generara bucles segun jugadores seamos.
         int numeroJugadores = 0;
         int contadorJugadores = 0;
+        //Esta variable nos seria para hacer un condicional por si queremos conservar el mismo numero de jugadores o volver a pedirlo.
         String mismosJugadores;
+        // La variable ranking nos permite concatenar, como nosotros queramos, el resultado final del trivial.
         String ranking = "";
+        String fallo = "Has fallado, ";
         String respuestaUsuario;
         final String ERRORPARSEINTEXCEPTION = "Error inesperado."; // creo las variables de mensaje de las Excepciones
         String volverAJugar;
@@ -54,16 +58,23 @@ public class Trivial {
         int contadorPreguntas = 0;
         int numRamdon;
         int numPreguntas;
-        final int RANGO_MAXIMO = 10;   // ponemos el maximo a 9 para cuando todo funcione meternos con la pregunta 10 que es mas complicada.
+        /* generamos el maximo y el minimoo para el contador de preguntas, ojo, no para el numero de preguntas a realizar
+        si no  para sacar la pregunta aleatoriamente.*/
+        final int RANGO_MAXIMO = 10;
         final int RANGO_MINIMO = 1;
         String numeroPreguntasText;
+        /* esta variable nos permite dos cosas, comprobar que la longitud de las respuestas sea la correcta o 
+        que convierta a un formato correcto, ademas en la pregunta 10, nos permite corregir las respuestas char por char
+        pudiendo otorgar medio punto si la mitad esta bien.
+         */
         int longitudRespuesta = 0;
         double aciertos;
         double tmpAciertos;
         String tmpUsuario;
         double porcentajeDeAciertos;
         System.out.println("Bienvenidos al trivial de " + NOMBRE_TRIVIAL + ". \n----------------------------------------------------\n");
-
+        /*Tenemos la variable jugar que mientras sea true sigue jugando, es el bucle principal, donde TODO se ejecuta,
+        ademas, reseteamos las variables para volver a generar una nueva partida sin tener que reiniciar el programa. */
         while (jugar != false) {
             contadorPreguntas = 0;
             numPreguntas = 0;
@@ -77,6 +88,10 @@ public class Trivial {
             aciertos2 = 0;
             aciertos3 = 0;
             aciertos4 = 0;
+            /*aqui entramos en el primer bucle con jugadores a 0 cn lo cual nos preguntara y comprobara que jugadores
+            sea del 1 al 4, este bucle engloba todo el juego en su interior repitiendolo tantas veces como 
+            jugadores hayan.
+             */
             while (numeroJugadores < 1 || numeroJugadores > 4) {
                 System.out.println("Cuantos jugadores vais a jugar? maximo 4 minimo 1 \n----------------------------------------------------\n");
                 try {
@@ -91,6 +106,12 @@ public class Trivial {
                     System.out.println(ERRORPARSEINTEXCEPTION);
                 }
             }
+            /*accederemos, segun el contador de jugadores, a crear la variable de cada jugador, 
+            guardando asi todos los nombres de los jugadores en sus variables individuales,
+            ademas, como podeos observar, apartir del jugador 2 restaura las variables que tengan que 
+            ver con los haciertos y repeticiones de preguntas, para que pueda acceder, cada jugador, 
+            al juego en su totalidad.
+             */
             while (contadorJugadores < numeroJugadores) {
                 if ((contadorJugadores + 1) == 1) {
                     System.out.println("Cual es tu nombre jugador " + (contadorJugadores + 1) + "\n----------------------------------------------------\n");
@@ -121,6 +142,11 @@ public class Trivial {
                     contadorJugadores++;
                     usuario4 = sc.nextLine();
                 }
+                /*Aqui entramos ya al bucle de preguntas la cual comprueba que metamos siempre de 3 a 10 preguntas, y como 
+                por defecto esta en 0 entra hasta que seleccionemos de 3 a 10 preguntas, ademas esta variable no cambiara
+                con otros jugadores, todos los jugadores realizaran el mismo numero de preguntas en cada juego.
+                
+                 */
 
                 while (numPreguntas < 3 || numPreguntas > 10) {
                     System.out.println("¿Cuantas preguntas quieres hacer? De 3 a 10 preguntas. \n----------------------------------------------------\n");
@@ -138,23 +164,32 @@ public class Trivial {
                     }
                 }
                 System.out.println("Responde a las preguntas con S (si) o N (No) \n----------------------------------------------------\n");
-
+                /*
+                Generamos el numero random
+                 */
                 while (contadorPreguntas < numPreguntas) {
                     numRamdon = (int) Math.floor(Math.random() * (RANGO_MAXIMO - RANGO_MINIMO + 1) + RANGO_MINIMO);
 
-                    // Mostramos pregunta según numero random
+                    /*
+                    Aqui, como muchos de mis compañeros, empece haciendo un switch, pero me generaba problemas con el ultimo 
+                    case, haciendome bucles infinitos, podria haber generado un String a modo de array para no repetir, 
+                    pero opte por hacer algo diferente, que es una secuencia de comprobaciones la cual si la pregunta 
+                    aleatoria estaba repetida pasaba a la siguiente, siendo asi igual de aleatorio.
+                    */
                     if (numRamdon == 1 && !repetida1) {
+                        // asigno la pregunta como que ha salido ya
                         repetida1 = true;
+                        // aumento el contador de preguntas.
                         contadorPreguntas++;
                         System.out.println(PREGUNTA1);
                         respuestaUsuario = sc.nextLine();
-
+                        // compruebo que insertan lo que les pido.
                         while (!respuestaUsuario.equalsIgnoreCase("NO") && !respuestaUsuario.equalsIgnoreCase("N")
                                 && !respuestaUsuario.equalsIgnoreCase("SI") && !respuestaUsuario.equalsIgnoreCase("S")) {
                             System.out.println("Por favor, Responda Si o No");
                             respuestaUsuario = sc.nextLine();
                         }
-
+                        // hago posibles las opciones SI,S,No ,N.
                         longitudRespuesta = respuestaUsuario.length();
                         if (longitudRespuesta == 2) {
                             if (respuestaUsuario.equalsIgnoreCase("No")) {
@@ -166,14 +201,17 @@ public class Trivial {
 
                         if (respuestaUsuario.equalsIgnoreCase(RESPUESTA1)) {
                             aciertos++;
+                                // genero un mensaje en singular o plural segun la cantidad de puntos que lleve el usuario.
                             if (aciertos > 1) {
                                 System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Puntos, Animo!. \n----------------------------------------------------");
                             } else {
                                 System.out.println("\nCorrecto, Llevas un total de " + aciertos + " Punto, Animo!. \n----------------------------------------------------");
 
                             }
+                            
                         } else {
-                            System.out.println("\nSon 5: Homer, Marge, Bart, Maggie y Lisa \n----------------------------------------------------\n");
+                                // si el usuario no acierta, le muetro la respuesta correcta.
+                            System.out.println("\n"+ fallo +  "Son 5: Homer, Marge, Bart, Maggie y Lisa \n----------------------------------------------------\n");
                         }
                     } else if (numRamdon == 2 && !repetida2) {
                         repetida2 = true;
@@ -204,7 +242,7 @@ public class Trivial {
 
                             }
                         } else {
-                            System.out.println("\nRealmente fue ella quien disparó, asi que si. \n----------------------------------------------------\n");
+                            System.out.println("\n"+ fallo +  "Realmente fue ella quien disparó, asi que si. \n----------------------------------------------------\n");
                         }
                     } else if (numRamdon == 3 && !repetida3) {
                         repetida3 = true;
@@ -234,7 +272,7 @@ public class Trivial {
 
                             }
                         } else {
-                            System.out.println("\nLa ciudad rival de Springfield es shelbyville \n----------------------------------------------------\n");
+                            System.out.println("\n"+ fallo +  "La ciudad rival de Springfield es shelbyville \n----------------------------------------------------\n");
 
                         }
                     } else if (numRamdon == 4 && !repetida4) {
@@ -266,7 +304,7 @@ public class Trivial {
 
                             }
                         } else {
-                            System.out.println("\nNo son pareja, aunque siempre aparecen juntos, se trata de dos buenos amigos.\n----------------------------------------------------\n");
+                            System.out.println("\n"+ fallo +  "No son pareja, aunque siempre aparecen juntos, se trata de dos buenos amigos.\n----------------------------------------------------\n");
                         }
                     } else if (numRamdon == 5 && !repetida5) {
                         repetida5 = true;
@@ -296,7 +334,7 @@ public class Trivial {
 
                             }
                         } else {
-                            System.out.println("\nLos simpsons viajan a Japon con unos billetes que le roban a Ned Flanders.\n----------------------------------------------------\n");
+                            System.out.println("\n"+ fallo +  "Los simpsons viajan a Japon con unos billetes que le roban a Ned Flanders.\n----------------------------------------------------\n");
                         }
                     } else if (numRamdon == 6 && !repetida6) {
                         repetida6 = true;
@@ -326,7 +364,7 @@ public class Trivial {
 
                             }
                         } else {
-                            System.out.println("\nTiene un hermano, el cual le pidio dinero para hacer un traductor de bebes, lo invento y triunfó. \n----------------------------------------------------\n");
+                            System.out.println("\n"+ fallo +  "Tiene un hermano, el cual le pidio dinero para hacer un traductor de bebes, lo invento y triunfó. \n----------------------------------------------------\n");
 
                         }
                     } else if (numRamdon == 7 && !repetida7) {
@@ -357,7 +395,7 @@ public class Trivial {
 
                             }
                         } else {
-                            System.out.println("\nBart tiene un hermano gemelo llamado Hugo, el cual aparecio en un episodio de hallowen. \n----------------------------------------------------\n");
+                            System.out.println("\n"+ fallo +  "Bart tiene un hermano gemelo llamado Hugo, el cual aparecio en un episodio de hallowen. \n----------------------------------------------------\n");
                         }
                     } else if (numRamdon == 8 && !repetida8) {
                         repetida8 = true;
@@ -387,7 +425,7 @@ public class Trivial {
 
                             }
                         } else {
-                            System.out.println("\nSegun un Brujo adivino, jefe de un casino, que predie el futuro\n ");
+                            System.out.println("\n"+ fallo +  "Segun un Brujo adivino, jefe de un casino, que predie el futuro\n ");
                             System.out.println("en los Simpsons, Lisa acabaria de Presidenta de los EE.UU \n----------------------------------------------------\n");
                         }
                     } else if (numRamdon == 9 && !repetida9) {
@@ -418,7 +456,7 @@ public class Trivial {
 
                             }
                         } else {
-                            System.out.println("\nRealmente si, Dios y Jesucristo, aparecen resprentados con 5 dedos. \n----------------------------------------------------\n");
+                            System.out.println("\n"+ fallo +  "Realmente si, Dios y Jesucristo, aparecen resprentados con 5 dedos. \n----------------------------------------------------\n");
 
                         }
                     } else if (numRamdon == 10 && !repetida10) {
@@ -435,12 +473,13 @@ public class Trivial {
 
                             }
                         } else {
-
+                            // aqui compruebo caracter a caracter la respuesta del usuario.
                             if (RESPUESTA10.length() == respuestaUsuario.length()) {
                                 respuestaUsuario = respuestaUsuario.toUpperCase();
                                 if (RESPUESTA10.charAt(0) == respuestaUsuario.charAt(0)
                                         || RESPUESTA10.charAt(1) == respuestaUsuario.charAt(1)) {
                                     repetida10 = true;
+                                    // aqui si el usuario acierta una de las dos uniciales le sumo medio punto.
                                     System.out.println("\nCasi, casi, venga te doy medio punto. \n----------------------------------------------------\n");
                                     aciertos = aciertos + 0.5;
                                     if (aciertos > 1) {
@@ -450,15 +489,16 @@ public class Trivial {
 
                                     }
                                 } else {
-                                    System.out.println("\nEl pelo y la oreja de homer forman las iniciales del creador MG. \n----------------------------------------------------\n");
+                                    System.out.println("\n"+ fallo +  "El pelo y la oreja de homer forman las iniciales del creador MG. \n----------------------------------------------------\n");
 
                                 }
                             } else {
-                                System.out.println("\nlas palabras no tienen la misma longitud, creo que no te la sabes... \n----------------------------------------------------\n");
+                                  //si el usuario pone mas de 2 letras le digo la respuesta tambien.
+                                System.out.println("\n"+ fallo +  "las palabras no tienen la misma longitud, creo que no te la sabes... El pelo y la oreja de homer forman las iniciales del creador MG. \n----------------------------------------------------\n");
                             }
                         }
                     }
-
+                    // aqui almaceno por cada bucle, el numero de aciertos de el jugador que esta jugando en ese momento.
                     switch (contadorJugadores) {
                         case 1:
                             aciertos1 = aciertos;
@@ -472,6 +512,9 @@ public class Trivial {
                     }
 
                 }
+                /* genero el pordentaje de haciertos segun las preguntas que han elegido ademas de 
+                una frase segun los 4 tramos de porcentaje que hayan optenido.
+                */
                 porcentajeDeAciertos = (aciertos * 100) / numPreguntas;
                 if (porcentajeDeAciertos <= 33) {
                     System.out.print("Subscribete a Disney plus y empiezala de nuevo.\n----------------------------------------------------\n");
@@ -482,18 +525,23 @@ public class Trivial {
                 } else if (porcentajeDeAciertos <= 100) {
                     System.out.print("¿Eres Matt Groening? PER-FEC-TO!\n----------------------------------------------------\n");
                 }
-
+                // le muestro el porcentaje de aciertos.
                 System.out.println(String.format("Has acertado el  %.02f", porcentajeDeAciertos) + "% de las preguntas.\n----------------------------------------------------");
 
             }
-          
+            /*
+            Aqui para hacer el ranking, entra en cada uno de los if, segun los jugadores que esten jugando,
+            si solo hay un jugador, no ordena ni hace el ranking, solo lo realiza apartir de 2 jugadores,
+            para realizar el ordenamiento de los aciertos y los nombre por orden.
+            
+            Lo explico mejor en el caso 4 que es mas extenso.
+            */
             if (numeroJugadores == 1) {
                 System.out.println("");
-                
+
             } else if (numeroJugadores == 2) {
-                
-                
-                  if (aciertos1 < aciertos2) {
+
+                if (aciertos1 < aciertos2) {
                     tmpAciertos = aciertos1;
                     tmpUsuario = usuario1;
                     aciertos1 = aciertos2;
@@ -503,15 +551,10 @@ public class Trivial {
 
                 }
 
-              
-
-             
-                
                 System.out.println("Este es el ranking: " + "\n" + " " + aciertos1 + " " + usuario1 + " \n " + aciertos2 + " " + usuario2 + "\n----------------------------------------------------");
             } else if (numeroJugadores == 3) {
-                
-                
-                 if (aciertos1 < aciertos2) {
+
+                if (aciertos1 < aciertos2) {
                     tmpAciertos = aciertos1;
                     tmpUsuario = usuario1;
                     aciertos1 = aciertos2;
@@ -545,67 +588,75 @@ public class Trivial {
                     aciertos3 = tmpAciertos;
                     usuario3 = tmpUsuario;
                 }
-                System.out.println("Este es el ranking: " + "\n" + " " + aciertos1 + " " + usuario1 + " \n " + aciertos2 + " " + usuario2 + " \n " + aciertos3 + " " + usuario3  + "\n----------------------------------------------------");
+                System.out.println("Este es el ranking: " + "\n" + " " + aciertos1 + " " + usuario1 + " \n " + aciertos2 + " " + usuario2 + " \n " + aciertos3 + " " + usuario3 + "\n----------------------------------------------------");
             } else if (numeroJugadores == 4) {
-                
-                 if (aciertos1 < aciertos2) {
-                tmpAciertos = aciertos1; //tmpAciertos = 6
-                tmpUsuario = usuario1;
-                aciertos1 = aciertos2; // a = 8
-                usuario1 = usuario2;
-                aciertos2 = tmpAciertos; // b = 6
-                usuario2 = tmpUsuario;
 
-                // a= 8    b=6
+                if (aciertos1 < aciertos2) {  // si aciertos 1 es menos que aciertos 2.
+                    tmpAciertos = aciertos1; // guardo aciertos 1 en una variable temporal.
+                    tmpUsuario = usuario1;  // hacemos lo mismo con el usuario al que pertenece
+                    
+                    aciertos1 = aciertos2 ; // intercambiamos el valor de aciertos 1 por el de 2
+                    usuario1 = usuario2;   // lo mismo con el nombre
+                    
+                    aciertos2 = tmpAciertos;  // le asignamos a aciertos dos el valor inicial de aciertos 1
+                    usuario2 = tmpUsuario;   // lo mismo con el nombre
+
+                    // de esta forma conseguimos que se ordenen los jugadores y las puntuaciones
+                }
+                // haremos lo mismo con todas las posibilidades comparativas.
+                if (aciertos3 < aciertos4) {
+                    tmpAciertos = aciertos3;
+                    tmpUsuario = usuario3;
+                    
+                    aciertos3 = aciertos4;
+                    usuario3 = usuario4;
+                    
+                    aciertos4 = tmpAciertos;
+                    usuario4 = tmpUsuario;
+                }
+
+                if (aciertos1 < aciertos3) {
+
+                    tmpAciertos = aciertos1;
+                    tmpUsuario = usuario1;
+
+                    aciertos1 = aciertos3;
+                    usuario1 = usuario3;
+
+                    aciertos3 = tmpAciertos;
+                    usuario3 = tmpUsuario;
+
+                }
+
+                if (aciertos2 < aciertos4) {
+                    tmpAciertos = aciertos2;
+                    tmpUsuario = usuario2;
+
+                    aciertos2 = aciertos4;
+                    usuario2 = usuario4;
+
+                    aciertos4 = tmpAciertos;
+                    usuario4 = tmpUsuario;
+
+                }
+                if (aciertos2 < aciertos3) {
+
+                    tmpAciertos = aciertos2;
+                    tmpUsuario = usuario2;
+
+                    aciertos2 = aciertos3;
+                    usuario2 = usuario3;
+
+                    aciertos3 = tmpAciertos;
+                    usuario3 = tmpUsuario;
+                }
+                System.out.println("Este es el ranking: " + "\n" + " " + aciertos1 + " " + usuario1 + " \n " + aciertos2 + " " + usuario2 + " \n " + aciertos3 + " " + usuario3 + " \n " + aciertos4 + " " + usuario4 + "\n----------------------------------------------------");
             }
 
-            if (aciertos3 < aciertos4) {
-                tmpAciertos = aciertos3;
-                tmpUsuario = usuario3;
-                aciertos3 = aciertos4;
-                usuario3 = usuario4;
-                aciertos4 = tmpAciertos;
-                usuario4 = tmpUsuario;
-            }
-
-            if (aciertos1 < aciertos3) {
-
-                tmpAciertos = aciertos1;
-                tmpUsuario = usuario1;
-
-                aciertos1 = aciertos3;
-                usuario1 = usuario3;
-
-                aciertos3 = tmpAciertos;
-                usuario3 = tmpUsuario;
-
-            }
-
-            if (aciertos2 < aciertos4) {
-                tmpAciertos = aciertos2;
-                tmpUsuario = usuario2;
-
-                aciertos2 = aciertos4;
-                usuario2 = usuario4;
-
-                aciertos4 = tmpAciertos;
-                usuario4 = tmpUsuario;
-
-            }
-            if (aciertos2 < aciertos3) {
-
-                tmpAciertos = aciertos2;
-                tmpUsuario = usuario2;
-
-                aciertos2 = aciertos3;
-                usuario2 = usuario3;
-
-                aciertos3 = tmpAciertos;
-                usuario3 = tmpUsuario;
-            }
-                System.out.println("Este es el ranking: " + "\n" + " " + aciertos1 + " " + usuario1 + " \n " + aciertos2 + " " + usuario2 + " \n " + aciertos3 + " " + usuario3 + " \n " + aciertos4 + " " + usuario4  + "\n----------------------------------------------------");
-            }
-
+            /* aqui le preguntamos al usuario si quiere volver a jugar, modificando el boolean del bucle principal
+            el cual sigue ejecutando el juego hasta que esta variable de abajo cambie a false.
+            */
+            
             System.out.println("\n¿Quieres volver a jugar?");
             volverAJugar = sc.nextLine();
             while (!volverAJugar.equalsIgnoreCase("NO") && !volverAJugar.equalsIgnoreCase("N")
@@ -620,6 +671,12 @@ public class Trivial {
             } else if (volverAJugar.equalsIgnoreCase("SI") || volverAJugar.equalsIgnoreCase("S")) {
                 System.out.println("Allá vamos!");
             }
+            
+            /* Si el numero de jugadores es mayor a 1, le damos la posibilidad
+            de que el numero de jugadores sea el mismo, si dice que no, volveremos a 
+            preguuntar que cuantos jugadores van a jugar.
+            
+            */
             if (numeroJugadores > 1) {
                 System.out.println("¿Sereis los mismos jugadores?");
                 mismosJugadores = sc.nextLine();
@@ -628,6 +685,11 @@ public class Trivial {
 
                 }
             }
+            /* Ponemos a 0 el contador de jugadores para que ejecute, de nuevo, 
+            cantidad de Bubles como jugadores haya en ese momento, si no lo pusieramos
+            a 0 seria como si los jugadores hubieran hecho ya sus rondas.
+            */
+            
             contadorJugadores = 0;
         }
 

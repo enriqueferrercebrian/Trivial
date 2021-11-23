@@ -166,7 +166,7 @@ public class Trivial {
                 System.out.println("Responde a las preguntas con S (si) o N (No) \n----------------------------------------------------\n");
                 /*
                 Generamos el numero random
-                 */
+                 */ 
                 while (contadorPreguntas < numPreguntas) {
                     numRamdon = (int) Math.floor(Math.random() * (RANGO_MAXIMO - RANGO_MINIMO + 1) + RANGO_MINIMO);
 
